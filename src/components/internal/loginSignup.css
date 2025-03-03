@@ -1,0 +1,77 @@
+/* Container */
+.login-signup_container {
+  max-width: 320px;
+  margin: 60px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Headings inside login/signup */
+.login-signup_container h2 {
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+
+/* Input Groups */
+.login-signup_input-group {
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.login-signup_input-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.login-signup_input-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Scoped Button */
+.login-signup_button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.login-signup_button:hover {
+  background: #45a049;
+}
+
+/* Error Message */
+.login-signup_error-message {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* Toggle Text */
+.login-signup_toggle-text {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.login-signup_toggle-text span {
+  color: #007BFF;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.login-signup_toggle-text span:hover {
+  text-decoration: underline;
+}

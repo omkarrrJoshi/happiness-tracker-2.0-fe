@@ -1,0 +1,152 @@
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow: hidden;
+
+}
+
+/* Modal Window */
+.modal {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 320px; /* Slightly wider for better readability */
+  width: 90%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  max-height: 80vh; /* Ensures it doesn't exceed 80% of viewport height */
+  overflow-y: auto; /* Enables vertical scrolling */
+}
+
+/* Close Button */
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #E63946; /* Soft red */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Form Styling */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  color: #333; /* Dark gray text */
+  margin-bottom: 5px;
+}
+
+.form-group label.required:after {
+  content: "*";
+  color: red;
+  margin-left: 4px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+  background-color: #FAFAFA; /* Soft background */
+}
+
+.form-group textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+/* Buttons */
+.btn {
+  width: 100%;
+  background-color: #2A9D8F; /* Calming green */
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background-color: #21867A; /* Darker green */
+}
+
+.btn.close {
+  background-color: #E63946; /* Red for close button */
+}
+
+.btn.close:hover {
+  background-color: #C82E3E;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 400px) {
+  .modal {
+    max-width: 280px;
+  }
+}
+
+/* Toggle Button */
+.toggle-btn {
+  background: #2A9D8F;
+  color: white;
+  border: none;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.toggle-btn:hover {
+  background: #21867A;
+}
+
+/* Daily Target Section */
+.daily-target-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.daily-target {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+}
+
+.daily-target input {
+  width: 50px;
+  text-align: center;
+  padding: 5px;
+}
+
+.target-description {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 5px;
+}

@@ -1,0 +1,43 @@
+.date-picker-container {
+  position: relative;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Date Box */
+.date-display {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px 8px;
+}
+
+/* 02-Mar Box */
+.date {
+  font-size: 16px;
+  font-weight: bold;
+  background: #f8d775; /* Soft yellow */
+  color: #4a3629; /* Deep brown for contrast */
+  padding: 6px 10px;
+  border-radius: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* Day (Sun) */
+.day {
+  font-size: 12px;
+  margin-top: 4px;
+  color: white; /* Darker earthy brown */
+}
+
+/* Date Picker */
+.react-datepicker {
+  position: absolute;
+  right: 0; /* ✅ Forces calendar to stay inside screen */
+  transform: translateX(-10%); /* ✅ Moves it slightly left */
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+

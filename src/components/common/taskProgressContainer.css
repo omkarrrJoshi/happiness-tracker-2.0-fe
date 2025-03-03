@@ -1,0 +1,63 @@
+.task-progress-container-spiritual {
+  display: flex;
+  align-items: center;
+  margin: 5px 5px; /* Minimal separation */
+  justify-content: space-between;
+  background: #f9e3ad; /* 🌟 Soft creamy background */
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  min-height: 45px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Subtle Elevation */
+.task-progress-container-spiritual:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* Task Label */
+.task-progress-container-spiritual .col-7 {
+  font-weight: 600;
+  font-size: 15px;
+  color: #7D4B21; /* 🌿 Rich warm brown */
+  text-align: left;
+}
+
+/* Progress & Target */
+.task-progress-container-spiritual .col-2,
+.task-progress-container-spiritual .col-1 {
+  text-align: center;
+  font-weight: 600;
+  color: #5C3D2E; /* 📜 Soft, premium brown */
+}
+
+/* Completed Task Icon */
+.task-progress-container-spiritual img {
+  width: 22px;
+  height: auto;
+}
+
+/* Premium Completed Task Highlight */
+.task-progress-container-spiritual.completed {
+  background: #EAF7DC; /* 🌿 Elegant soft green */
+  border-left: 4px solid #3D8361;
+  box-shadow: 0 2px 4px rgba(61, 131, 97, 0.2);
+}
+
+
+.menu-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-dropdown-button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 5px;
+  color: #7D4B21; /* Warm brown for better visibility */
+}

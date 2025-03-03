@@ -1,0 +1,39 @@
+.collapsible-component {
+  margin: 10px 5px;
+  border: 1px solid #E76F51; /* Burnt orange border */
+  border-radius: 5px;
+  
+}
+
+/* Header (Collapsible Title Bar) */
+.collapsible-component-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background: #EFB960; /* Warm golden color */
+  cursor: pointer;
+  color: #4A3629; /* Deep brown for readability */
+  font-weight: bold;
+  border-radius: 5px;
+  touch-action: manipulation; /* Optimized for mobile */
+}
+
+/* SVG Icons */
+.collapsible-component-header img {
+  width: 20px;
+  height: auto;
+}
+
+/* Content Background */
+.collapsible-component-content {
+  transition: height 0.3s ease-in-out;
+  background-color: #faf3e3; /* Soft cream for inner content */
+}
+
+.collapsible-inner-content {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  /* background: #FFF5E1; 🍂 Soft peachy cream */
+  /* border-radius: 0 0 6px 6px; Smooth bottom edges */
+}

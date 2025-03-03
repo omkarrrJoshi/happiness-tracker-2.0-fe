@@ -1,0 +1,38 @@
+.menu-dropdown {
+  position: absolute;
+  right: 5px;
+  top: 35px;
+  background-color: #FFF5E1 !important; /* ✅ Ensures full opacity */
+  border: 1px solid #E6A23C;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  padding: 5px 0;
+  min-width: 140px;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+
+/* Increase button spacing for mobile */
+.menu-dropdown button {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #7D4B21;
+  font-weight: 500;
+}
+
+/* Add dividers between options */
+.menu-dropdown button:not(:last-child) {
+  border-bottom: 1px solid #E6A23C; /* Soft golden divider */
+}
+
+/* Prevent clicks on hidden dropdown */
+.menu-dropdown.hidden {
+  display: none;
+  pointer-events: none;
+}

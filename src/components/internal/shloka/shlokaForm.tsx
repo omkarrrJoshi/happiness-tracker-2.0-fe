@@ -24,7 +24,7 @@ const ShlokaForm: React.FC<ShlokaFormProps> = ({ isOpen, onClose, type }) => {
     { name: "name", label: `${type.charAt(0).toUpperCase() + type.slice(1)} Name`, type: "text", placeholder: "Enter name", required: true },
     { name: "link", label: `${type.charAt(0).toUpperCase() + type.slice(1)} Link`, type: "url", placeholder: "Enter link (optional)" },
     { name: "description", label: "Description", type: "textarea", placeholder: "Enter description (optional)" },
-    { name: "start_date", label: "Start Date", type: "date", required: false }, // ✅ Added end-date
+    { name: "start_date", label: "Start Date", type: "date", required: true }, // ✅ Added start-date
     { name: "end_date", label: "End Date", type: "date", required: false }, // ✅ Added end-date
   ];
 

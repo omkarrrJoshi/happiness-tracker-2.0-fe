@@ -3,56 +3,56 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 4px; /* Reduced gap for better spacing */
+  width: 100%;
+  max-width: 100%; /* Ensures it fits in col-3 */
 }
 
-/* Counter Buttons */
+/* Buttons (Increment & Decrement) */
 .counter-btn {
-  background: #2A9D8F; /* Calming green */
-  color: white;
-  border: none;
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
+  width: 26px; /* Slightly increased for better tapability */
+  height: 26px;
+  font-size: 16px;
   font-weight: bold;
+  border: none;
+  background-color: #4CAF50; /* Green */
+  color: white;
   border-radius: 50%;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: background 0.2s ease-in-out;
 }
 
-/* Disabled State */
+.counter-btn-negative {
+  background-color: #ca4414;
+}
+
 .counter-btn:disabled {
-  background: #B0BEC5; /* Muted grey */
+  background-color: #ccc;
   cursor: not-allowed;
 }
 
-/* Active Button Styles */
-.counter-btn-negative {
-  background: #E63946; /* Soft red */
+/* Click Feedback */
+.counter-btn:active {
+  transform: scale(0.95); /* Slight shrink effect */
+  opacity: 0.9;
 }
 
-.counter-btn-negative:active {
-  background: #D32F2F;
-}
-
-.counter-btn-positive {
-  background: #2A9D8F; /* Green */
-}
-
-.counter-btn-positive:active {
-  background: #21867A;
-}
-
-/* Counter Display Box */
+/* Progress Display Box */
 .counter-box-small-box {
-  background: #FAE588; /* Yellow */
-  padding: 12px;
-  border-radius: 8px;
+  min-width: 32px; /* Increased to maintain visibility */
+  min-height: 32px;
+  font-size: 16px;
   font-weight: bold;
+  background: #FFF5E1; /* Soft peach */
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
   cursor: pointer;
-  min-width: 50px;
-  text-align: center;
-  font-size: 18px;
   transition: background 0.2s ease-in-out;
 }
 
@@ -62,20 +62,25 @@
   cursor: not-allowed;
 }
 
-/* Responsive Design */
-@media (max-width: 400px) {
-  .counter-box {
-    gap: 8px;
-  }
+/* Proper Alignment Inside TaskProgressContainer */
+.col-3 .counter-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 
+/* Handle Smaller Screens */
+@media (max-width: 400px) {
   .counter-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 18px;
+    width: 22px;
+    height: 22px;
+    font-size: 14px;
   }
 
   .counter-box-small-box {
-    font-size: 16px;
-    padding: 10px;
+    min-width: 28px;
+    min-height: 28px;
+    font-size: 14px;
   }
 }

@@ -1,42 +1,25 @@
 import React, { useState } from "react";
-import { UpdateDailyTaskProgressRequest } from "../../types/models/dailyTask";
-import { useDispatch } from "react-redux";
-import { UPDATE_DAILY_TASK_PROGREASS_REQUEST } from "../../redux/actions/action_keys";
 
 import './progressUpdater.css'
-import { useSelector } from "react-redux";
-import { getUserId } from "../../redux/selectors/userSelector";
 interface ProgressUpdaterProps {
   isOpen: boolean;
   onClose: () => void;
   pillar: string;
-  task_progress_id: string;
   name: string;
   daily_progress: number;
-  type: string;
+  updateProgress: (newProgress: number) => void;
 }
 
-const ProgressUpdater: React.FC<ProgressUpdaterProps> = ({ isOpen, onClose, pillar, task_progress_id, name, daily_progress, type }) => {
+const ProgressUpdater: React.FC<ProgressUpdaterProps> = (
+  { isOpen, 
+    onClose, 
+    pillar, 
+    name, 
+    daily_progress, 
+    updateProgress 
+  }) => {
   const [progress, setProgress] = useState<string>("");
-  const user_id = useSelector(getUserId)
-
-  const dispatch = useDispatch()
   if (!isOpen) return null;
-
-  const updateProgress = (newProgress: number):void => {
-    const updatedBody: UpdateDailyTaskProgressRequest = {
-      user_id: user_id,
-      id: task_progress_id,
-      type: type,
-      body: {
-        daily_progress: newProgress
-      }
-    }
-    dispatch({
-      type: UPDATE_DAILY_TASK_PROGREASS_REQUEST,
-      payload: updatedBody
-    })
-  }
 
   const DEFAULT_CLASS_NAME = `progress-updater-${pillar}`;
 

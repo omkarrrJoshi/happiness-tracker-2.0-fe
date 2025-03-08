@@ -1,6 +1,7 @@
 import React from "react";
 import ExpandableComponent from "./collapsibleComponent";
 import DailyTasksProgressContainer from "../internal/dailyTasksProgressContainer";
+import Loader from "./loader";
 
 interface TaskSectionProps {
   label: string;
@@ -14,9 +15,10 @@ interface TaskSectionProps {
 const TaskSection: React.FC<TaskSectionProps> = ({ label, isLoading, tasks, pillar, type, FormComponent  }) => {
   return (
     <ExpandableComponent label={label} FormComponent={FormComponent} type={type}> 
-      {isLoading ? (
-        <p>Loading {label.toLowerCase()}...</p> // ✅ Show loading state
-      ) : tasks?.length > 0 ? (
+      {isLoading && (
+        <Loader /> // ✅ Show loading state
+      ) }
+      {tasks?.length > 0 ? (
         <DailyTasksProgressContainer pillar={pillar} type={type} tasks={tasks} />
       ) : (
         <p>No {label.toLowerCase()} available</p>

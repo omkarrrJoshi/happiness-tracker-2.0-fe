@@ -1,0 +1,81 @@
+/* Counter Box Container */
+.counter-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Counter Buttons */
+.counter-btn {
+  background: #2A9D8F; /* Calming green */
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+/* Disabled State */
+.counter-btn:disabled {
+  background: #B0BEC5; /* Muted grey */
+  cursor: not-allowed;
+}
+
+/* Active Button Styles */
+.counter-btn-negative {
+  background: #E63946; /* Soft red */
+}
+
+.counter-btn-negative:active {
+  background: #D32F2F;
+}
+
+.counter-btn-positive {
+  background: #2A9D8F; /* Green */
+}
+
+.counter-btn-positive:active {
+  background: #21867A;
+}
+
+/* Counter Display Box */
+.counter-box-small-box {
+  background: #FAE588; /* Yellow */
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  min-width: 50px;
+  text-align: center;
+  font-size: 18px;
+  transition: background 0.2s ease-in-out;
+}
+
+.counter-box-small-box.disabled {
+  background: #F0F0F0;
+  color: #888;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+  .counter-box {
+    gap: 8px;
+  }
+
+  .counter-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+
+  .counter-box-small-box {
+    font-size: 16px;
+    padding: 10px;
+  }
+}

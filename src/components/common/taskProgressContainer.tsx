@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import './taskProgressContainer.css'
 import MenuDropdown from "./menuDropdown";
-import ProgressUpdater from "../internal/progressUpdater";
+import { useDispatch } from "react-redux";
+import { UpdateDailyTaskProgressRequest } from "../../types/models/dailyTask";
+import { getUserId } from "../../redux/selectors/userSelector";
+import { useSelector } from "react-redux";
+import { UPDATE_DAILY_TASK_PROGREASS_REQUEST } from "../../redux/actions/action_keys";
+import CounterBox from "./counterBox";
 
 export interface ProgressContainerProps {
   task_ref_id: string;
@@ -34,18 +39,33 @@ const TaskProgressContainer: React.FC<ProgressContainerProps> = ({
   target,
   date
 }) => {
+  const dispatch = useDispatch();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isUpdaterOpen, setIsUpdaterOpen] = useState(false); // ✅ State for opening ProgressUpdater
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
-  const openUpdater = () => setIsUpdaterOpen(true);
-  const closeUpdater = () => setIsUpdaterOpen(false);
 
   const options = [
-    { label: "Update", action: () => openUpdater() }, // ✅ Open progress updater on update
+    { label: "Update", action: () => alert(`Update ${label}`) }, // ✅ Open progress updater on update
     { label: "Delete", action: () => alert(`Delete ${label}`) },
   ];
+
+  const user_id = useSelector(getUserId)
+
+  const updateProgress = (newProgress: number):void => {
+    const updatedBody: UpdateDailyTaskProgressRequest = {
+      user_id: user_id,
+      id: task_progress_id,
+      type: type,
+      body: {
+        daily_progress: newProgress
+      }
+    }
+    dispatch({
+      type: UPDATE_DAILY_TASK_PROGREASS_REQUEST,
+      payload: updatedBody
+    })
+  }
 
   const completed = progress >= target;
 
@@ -60,8 +80,14 @@ const TaskProgressContainer: React.FC<ProgressContainerProps> = ({
           )}
         </div>
         <div className="col-7">{label}</div>
-        <div className="col-2" onClick={openUpdater} style={{ cursor: "pointer" }}> {/* ✅ Click to open updater */}
-          {progress}
+        <div className="col-2"> {/* ✅ Click to open updater */}
+        <CounterBox
+            progress={progress} 
+            updateProgress={updateProgress} 
+            enable={true} 
+            label={label}
+            pillar={pillar}
+          />
         </div>
         <div className="col-1">{target}</div>
         <div className="col-1 menu-container"  onClick={toggleMenu}>
@@ -69,17 +95,6 @@ const TaskProgressContainer: React.FC<ProgressContainerProps> = ({
           <MenuDropdown isOpen={menuOpen} onClose={closeMenu} options={options} />
         </div>
       </div>
-
-      {/* ✅ Progress Updater Modal */}
-      <ProgressUpdater
-        isOpen={isUpdaterOpen}
-        onClose={closeUpdater}
-        pillar={pillar}
-        task_progress_id={task_progress_id}
-        name={label}
-        daily_progress={progress}
-        type={type}
-      />
     </>
   );
 };

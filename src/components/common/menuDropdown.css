@@ -1,6 +1,6 @@
 .menu-dropdown {
   position: absolute;
-  right: 5px;
+  right: 1px;
   top: 35px;
   background-color: #FFF5E1 !important; /* ✅ Ensures full opacity */
   border: 1px solid #E6A23C;

@@ -15,6 +15,7 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import { CREATE_DAILY_TASKS_REQUEST, FETCH_DAILY_TASKS_REQUEST, UPDATE_DAILY_TASK_PROGREASS_REQUEST } from "../actions/action_keys";
 import ApiResponse from "../../types/apiResponse";
 import { CreateDailyTaskPayload, UpdateDailyTaskProgressRequest } from "../../types/models/dailyTask";
+import { showNotification } from "../../utils/notification";
 
 interface FetchDailyTaskPayload {
   user_id: string,
@@ -28,6 +29,8 @@ function* handleFetchDailyTask(action: PayloadAction<FetchDailyTaskPayload>): Ge
     yield put(fetchDailyTaskRequest( {type} ));
 
     const result: ApiResponse = yield call(fetchDailyTask, user_id, date, type);
+    showNotification(result.message)
+    
     if (result.success) {
       yield put(fetchDailyTaskSuccess({ type, data: result.data, message: result.message }));
     } else {
@@ -45,6 +48,7 @@ function* handleCreateDailyTask(action: PayloadAction<CreateDailyTaskPayload>): 
     yield put(createDailyTaskRequest( {type} ));
 
     const result: ApiResponse = yield call(createDailyTask, userId, action.payload);
+    showNotification(result.message)
     if (result.success) {
       yield put(createDailyTaskSuccess({ type, data: result.data, message: result.message }));
     } else {
@@ -62,6 +66,7 @@ function* handleUpdateDailyTaskProgress(action: PayloadAction<UpdateDailyTaskPro
     yield put(updateDailyTaskProgressRequest( {type} ));
 
     const result: ApiResponse = yield call(updateDailyTaskProgress, user_id, action.payload);
+    showNotification(result.message)
     if (result.success) {
       yield put(updateDailyTaskProgressSuccess({ type, data: result.data, message: result.message }));
     } else {

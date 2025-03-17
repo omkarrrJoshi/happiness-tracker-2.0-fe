@@ -29,7 +29,6 @@ const ShlokaForm: React.FC<ShlokaFormProps> = ({ isOpen, onClose, type }) => {
   ];
 
   const handleSubmit = (data: Record<string, any>) => {
-    console.log(`${type} Form Submitted:`, data);
 
     // ✅ Explicitly map form data to `CreateDailyTaskPayload`
     const payloadData = {

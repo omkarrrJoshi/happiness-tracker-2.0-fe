@@ -1,5 +1,5 @@
 import { call, Effect, put, takeEvery } from "redux-saga/effects";
-import { createDailyTask, fetchDailyTask, updateDailyTaskProgress } from "../api/dailyTaskAPI";
+import { createDailyTask, fetchDailyTask, fetchDailyTaskTracker, updateDailyTaskProgress } from "../api/dailyTaskAPI";
 import {
   fetchDailyTaskRequest,
   fetchDailyTaskSuccess,
@@ -12,10 +12,11 @@ import {
   updateDailyTaskProgressFailure,
 } from "../slices/dailyTaskSlice";
 import { PayloadAction } from "@reduxjs/toolkit";
-import { CREATE_DAILY_TASKS_REQUEST, FETCH_DAILY_TASKS_REQUEST, UPDATE_DAILY_TASK_PROGREASS_REQUEST } from "../actions/action_keys";
+import { CREATE_DAILY_TASKS_REQUEST, FETCH_DAILY_TASK_TRACKER_REQUEST, FETCH_DAILY_TASKS_REQUEST, UPDATE_DAILY_TASK_PROGREASS_REQUEST } from "../actions/action_keys";
 import ApiResponse from "../../types/apiResponse";
-import { CreateDailyTaskPayload, UpdateDailyTaskProgressRequest } from "../../types/models/dailyTask";
+import { CreateDailyTaskPayload, FetchDailyTasTrackerRequest, UpdateDailyTaskProgressRequest } from "../../types/models/dailyTask";
 import { showNotification } from "../../utils/notification";
+import { fetchDailyTaskTrackerFailure, fetchDailyTaskTrackerRequest, fetchDailyTaskTrackerSuccess } from "../slices/dailyTaskTrackerSlice";
 
 interface FetchDailyTaskPayload {
   user_id: string,
@@ -29,7 +30,7 @@ function* handleFetchDailyTask(action: PayloadAction<FetchDailyTaskPayload>): Ge
     yield put(fetchDailyTaskRequest( {type} ));
 
     const result: ApiResponse = yield call(fetchDailyTask, user_id, date, type);
-    showNotification(result.message)
+    // showNotification(result.message)
     
     if (result.success) {
       yield put(fetchDailyTaskSuccess({ type, data: result.data, message: result.message }));
@@ -77,8 +78,28 @@ function* handleUpdateDailyTaskProgress(action: PayloadAction<UpdateDailyTaskPro
   }
 }
 
+function* handleFetchDailyTaskTracker(action: PayloadAction<FetchDailyTasTrackerRequest>): Generator<Effect, void, any> {
+  const type = action.payload.type as "shloka" | "namasmaran"; ;
+  const user_id = action.payload.user_id; 
+
+  try {
+    yield put(fetchDailyTaskTrackerRequest( {type} ));
+
+    const result: ApiResponse = yield call(fetchDailyTaskTracker, user_id, action.payload);
+    // showNotification(result.message)
+    if (result.success) {
+      yield put(fetchDailyTaskTrackerSuccess({ type, data: result.data, message: result.message }));
+    } else {
+      yield put(fetchDailyTaskTrackerFailure({ type, errors: result.errors, message: result.message }));
+    }
+  } catch (error: any) {
+    yield put(fetchDailyTaskTrackerFailure({ type: type, message: error.message, errors: [error] }));
+  }
+}
+
 export function* watchDailyTaskSaga() {
   yield takeEvery(FETCH_DAILY_TASKS_REQUEST, handleFetchDailyTask);
   yield takeEvery(CREATE_DAILY_TASKS_REQUEST, handleCreateDailyTask);
   yield takeEvery(UPDATE_DAILY_TASK_PROGREASS_REQUEST, handleUpdateDailyTaskProgress);
+  yield takeEvery(FETCH_DAILY_TASK_TRACKER_REQUEST, handleFetchDailyTaskTracker);
 }

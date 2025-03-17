@@ -1,0 +1,95 @@
+/* 🔹 Tracker Container */
+.tracker-spiritual-container {
+  padding: 12px;
+  text-align: center;
+  background: #FFF5E1; /* Soft peachy background */
+  min-height: 100vh;
+}
+
+/* 🔹 Title */
+.tracker-spiritual-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #7D4B21; /* Deep earthy brown */
+  margin-bottom: 8px;
+}
+
+/* 🔹 Minimal Tracker Type Selection */
+.tracker-spiritual-options {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.tracker-spiritual-options label {
+  font-size: 14px;
+  color: #7D4B21;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+/* 🔹 Type Selector */
+.tracker-spiritual-type-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.tracker-spiritual-type-selector label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #7D4B21;
+}
+
+.tracker-spiritual-type-selector select {
+  padding: 6px;
+  border: 1px solid #E6A23C;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+}
+
+/* 🔹 Date Picker */
+.tracker-spiritual-date-picker {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.tracker-spiritual-date-picker input {
+  padding: 6px;
+  border: 1px solid #E6A23C;
+  border-radius: 6px;
+  font-size: 12px;
+  width: 110px;
+  background: white;
+}
+
+.tracker-spiritual-date-picker input:disabled {
+  background: #EDEDED;
+  color: #999;
+}
+
+/* 🔹 Chart Container */
+.tracker-spiritual-chart {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* 🔹 Responsive Adjustments */
+@media (max-width: 400px) {
+  .tracker-spiritual-date-picker {
+    flex-direction: column;
+    align-items: center;
+  }
+  .tracker-spiritual-date-picker input {
+    width: 90%;
+  }
+}

@@ -44,7 +44,6 @@ export const apiClient = async (
 ): Promise<ApiResponse> => {
   // Construct the final URL
   const url = constructUrl(endpoint, queryParams, pathParams);
-  console.log("userId", userId)
   const response = await fetch(url, {
     method,
     headers: {

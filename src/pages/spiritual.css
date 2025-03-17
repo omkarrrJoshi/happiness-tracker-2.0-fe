@@ -1,0 +1,53 @@
+/* 🔹 Main Container */
+.spiritual-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full screen height */
+  background: #FFF5E1; /* Soft peachy background */
+}
+
+/* 🔹 Content Section (Takes Available Space) */
+.spiritual-content {
+  flex-grow: 1;
+  overflow-y: auto; /* Enables scrolling if content is long */
+  padding-bottom: 50px; /* Prevents overlap with buttons */
+}
+
+/* 🔹 Bottom Navigation */
+.bottom-navigation {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background: white;
+  /* padding: 10px 0; */
+  box-shadow: 0px -2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 🔹 Buttons */
+.bottom-navigation button {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  background: #E6A23C; /* Default Orange */
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+/* 🔹 Active Button */
+.bottom-navigation button.active {
+  background: #4CAF50; /* Green */
+}
+
+/* 🔹 Responsive Adjustments */
+@media (max-width: 400px) {
+  .bottom-navigation button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}

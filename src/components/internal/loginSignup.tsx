@@ -29,8 +29,6 @@ const login = async (email: string, password: string) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
-
-    console.log("Logged in user:", user);
     
     dispatch(setUser(user)); // ✅ Store user in Redux
   } catch (error) {
@@ -42,9 +40,7 @@ const login = async (email: string, password: string) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-  
-      console.log("New user created:", user);
-  
+    
       dispatch(setUser(user)); // ✅ Store new user in Redux
     } catch (error) {
       console.error("Signup failed:");

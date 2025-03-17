@@ -39,3 +39,15 @@ export interface UpdateDailyTaskProgressRequest {
   type: string,
   body: UpdateDailyTaskProgressPayload
 }
+
+export interface FetchDailyTasTrackerRequest {
+  user_id: string, 
+  type: string,
+  start_date: string,
+  end_date: string
+}
+
+export interface DailyTaskTracker {
+  total_progress: number,
+  total_target: number
+}

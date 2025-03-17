@@ -10,6 +10,5 @@ export const getUser = (state: AppState): User | null => {
 }
 
 export const getUserId = (state: AppState): string => {
-  console.log("uid: ", getUser(state)?.uid);
   return getUser(state)?.uid || "";
 }

@@ -1,6 +1,6 @@
-import { CREATE_DAILY_TASK, FETCH_DAILY_TASKS, GET, POST, PUT, UPDATE_DAILY_TASK_PROGRESS } from "../../constants/apis";
+import { CREATE_DAILY_TASK, FETCH_DAILY_TASKS, FETCH_DAILY_TASKTRACKER, GET, POST, PUT, UPDATE_DAILY_TASK_PROGRESS } from "../../constants/apis";
 import ApiResponse from "../../types/apiResponse";
-import { CreateDailyTaskPayload, UpdateDailyTaskProgressRequest } from "../../types/models/dailyTask";
+import { CreateDailyTaskPayload, FetchDailyTasTrackerRequest, UpdateDailyTaskProgressRequest } from "../../types/models/dailyTask";
 import { apiClient } from "../../utils/utils";
 
 
@@ -19,4 +19,12 @@ export const updateDailyTaskProgress = async (userId: string, request: UpdateDai
   const pathParams = new Map<string, string>();
   pathParams.set("id", request.id)
   return apiClient(userId, UPDATE_DAILY_TASK_PROGRESS, PUT, request.body, undefined, pathParams)
+};
+
+export const fetchDailyTaskTracker = async (userId: string, request: FetchDailyTasTrackerRequest): Promise<ApiResponse> => {
+  const queryParams = new Map<string, string>();
+  queryParams.set("type", request.type)
+  queryParams.set("start_date", request.start_date)
+  queryParams.set("end_date", request.end_date)
+  return apiClient(userId, FETCH_DAILY_TASKTRACKER, GET, undefined, queryParams)
 };

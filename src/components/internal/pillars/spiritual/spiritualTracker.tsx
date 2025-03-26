@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getMonthEnd, getMonthStart, getWeekEnd, getWeekStart } from "../../../../redux/selectors/dateSelector";
+import { getCurrentDate, getSelectedDate, getMonthEnd, getMonthStart, getWeekEnd, getWeekStart } from "../../../../redux/selectors/dateSelector";
 import { FETCH_DAILY_TASK_TRACKER_REQUEST } from "../../../../redux/actions/action_keys";
 import { getUserId } from "../../../../redux/selectors/userSelector";
 import { getNamasmaranTrackerData, getShlokaTrackerData } from "../../../../redux/selectors/dailyTaskTrackerSelector";
@@ -19,19 +19,24 @@ const SpiritualTracker: React.FC<TrackerPageProps> = ({ pillar }) => {
   const dispatch = useDispatch();
 
   // Date selectors
+  const currentDate = useSelector(getSelectedDate);
   const weekStart = useSelector(getWeekStart);
   const weekEnd = useSelector(getWeekEnd);
   const monthStart = useSelector(getMonthStart);
   const monthEnd = useSelector(getMonthEnd);
 
-  const [trackerType, setTrackerType] = useState<"weekly" | "monthly" | "custom">("weekly");
+  const [trackerType, setTrackerType] = useState<"daily" | "weekly" | "monthly" | "custom">("daily");
   const [selectedType, setSelectedType] = useState<string>(SHLOKA); // 🔹 Default to Shloka
   const [startDate, setStartDate] = useState(weekStart);
   const [endDate, setEndDate] = useState(weekEnd);
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(true);
 
   useEffect(() => {
-    if (trackerType === "weekly") {
+    if(trackerType === "daily") {
+      setStartDate(currentDate);
+      setEndDate(currentDate);
+      setIsDatePickerDisabled(true);
+    } else if (trackerType === "weekly") {
       setStartDate(weekStart);
       setEndDate(weekEnd);
       setIsDatePickerDisabled(true);
@@ -42,7 +47,7 @@ const SpiritualTracker: React.FC<TrackerPageProps> = ({ pillar }) => {
     } else {
       setIsDatePickerDisabled(false);
     }
-  }, [trackerType, weekStart, weekEnd, monthStart, monthEnd]);
+  }, [trackerType, currentDate, weekStart, weekEnd, monthStart, monthEnd]);
 
   useEffect(() => {
     dispatch({
@@ -73,6 +78,15 @@ const SpiritualTracker: React.FC<TrackerPageProps> = ({ pillar }) => {
 
       {/* 🔹 Tracker Type Selection */}
       <div className={`${DEFAULT_CLASS_NAME}-options`}>
+        <label>
+          <input
+            type="radio"
+            value="daily"
+            checked={trackerType === "daily"}
+            onChange={() => setTrackerType("daily")}
+          />
+          Daily
+        </label>
         <label>
           <input
             type="radio"

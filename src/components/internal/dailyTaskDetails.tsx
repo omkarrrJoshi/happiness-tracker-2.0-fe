@@ -23,6 +23,7 @@ const DailyTaskDetails: React.FC<DailyTaskDetailsProps> = ({
   description,
   daily_progress,
   daily_target,
+  link,
   start_date,
   end_date,
   target,
@@ -69,6 +70,7 @@ const DailyTaskDetails: React.FC<DailyTaskDetailsProps> = ({
             description,
             daily_progress,
             daily_target,
+            link,
             start_date,
             end_date,
             target

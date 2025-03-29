@@ -36,6 +36,14 @@
   background-color: #45a049;
 }
 
+.pie-chart-tracker__summary {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
 @media (max-width: 768px) {
   .pie-chart-tracker_container {
     width: 100vw; /* Ensures it stays within viewport width */

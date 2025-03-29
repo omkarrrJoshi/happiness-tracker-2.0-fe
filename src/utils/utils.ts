@@ -1,4 +1,5 @@
 import ApiResponse from "../types/apiResponse";
+import { userService } from "../types/models/user";
 
 export function constructUrl(
   baseUrl: string,
@@ -35,7 +36,6 @@ export const formatDate = (date: Date | string): string => {
 };
 
 export const apiClient = async (
-  userId: string,
   endpoint: string,
   method: "GET" | "POST" | "PUT" | "DELETE",
   body?: any,
@@ -44,6 +44,13 @@ export const apiClient = async (
 ): Promise<ApiResponse> => {
   // Construct the final URL
   const url = constructUrl(endpoint, queryParams, pathParams);
+  const userId = userService.getUserId()
+  if(userId === null){
+    return {
+      success: false,
+      message: "user not set on FE"
+    }
+  }
   const response = await fetch(url, {
     method,
     headers: {
@@ -70,4 +77,10 @@ export const apiClient = async (
     data: result.data,
     errors: null
   };
+};
+
+
+export const formatDateForDatePicker = (dateString: string | null) => {
+  if (!dateString) return "";
+  return new Date(dateString).toISOString().split("T")[0]; // Extracts YYYY-MM-DD
 };

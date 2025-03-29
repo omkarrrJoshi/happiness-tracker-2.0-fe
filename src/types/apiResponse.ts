@@ -1,9 +1,9 @@
 interface ApiResponse{
   success: boolean,
-  statusCode: number,
+  statusCode?: number,
   message: string,
-  data: any,
-  errors: any
+  data?: any,
+  errors?: any
 }
 
 export default ApiResponse;

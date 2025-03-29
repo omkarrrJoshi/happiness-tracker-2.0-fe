@@ -7,6 +7,7 @@
   import { useSelector } from "react-redux";
   import { UPDATE_DAILY_TASK_PROGREASS_REQUEST } from "../../redux/actions/action_keys";
   import CounterBox from "./counterBox";
+import { useNavigate } from "react-router-dom";
 
   export interface ProgressContainerProps {
     task_ref_id: string;
@@ -39,6 +40,7 @@
     target,
     date
   }) => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -79,7 +81,7 @@
               <img src="/svg-icons/task-completed.svg" alt="completed" />
             )}
           </div>
-          <div className="col-6">{label}</div>
+          <div className="col-6" onClick={() => navigate(`/spiritual/${type}/${task_ref_id}`)}>{label}</div>
           <div className="col-3"> {/* ✅ Click to open updater */}
           <CounterBox
               progress={progress} 

@@ -56,39 +56,78 @@ const dailyTaskSlice = createSlice({
       state[action.payload.type].message = action.payload.message;
     },
     //update progress
-  updateDailyTaskProgressRequest: (state, action: PayloadAction<{ type: "shloka" | "namasmaran" }>) => {
-    state[action.payload.type].loading = true;
-    state[action.payload.type].errors = null;
-    state[action.payload.type].message = null;
-  },
-  updateDailyTaskProgressSuccess: (
-    state,
-    action: PayloadAction<{ type: "shloka" | "namasmaran"; data: DailyTask; message: string }>
-  ) => {
-    state[action.payload.type].loading = false;
-    const data = action.payload.data
-    const daily_progress = data.daily_progress;
-    const daily_target = data.daily_target;
-    const daily_task_ref_id = data.daily_task_ref_id
+    updateDailyTaskProgressRequest: (state, action: PayloadAction<{ type: "shloka" | "namasmaran" }>) => {
+      state[action.payload.type].loading = true;
+      state[action.payload.type].errors = null;
+      state[action.payload.type].message = null;
+    },
+    updateDailyTaskProgressSuccess: (
+      state,
+      action: PayloadAction<{ type: "shloka" | "namasmaran"; data: DailyTask; message: string }>
+    ) => {
+      state[action.payload.type].loading = false;
+      const data = action.payload.data
+      const daily_progress = data.daily_progress;
+      const daily_target = data.daily_target;
+      const daily_task_ref_id = data.daily_task_ref_id
 
-    const typeList = state[action.payload.type].data.map(task =>
-      task.daily_task_ref_id === daily_task_ref_id
-        ? { ...task, daily_progress, daily_target } // ✅ Update the matched entry
-        : task
-    );
+      const typeList = state[action.payload.type].data.map(task =>
+        task.daily_task_ref_id === daily_task_ref_id
+          ? { ...task, daily_progress, daily_target } // ✅ Update the matched entry
+          : task
+      );
 
-    state[action.payload.type].data = typeList;
+      state[action.payload.type].data = typeList;
 
-    state[action.payload.type].message = action.payload.message;
-  },
-  updateDailyTaskProgressFailure: (
-    state,
-    action: PayloadAction<{ type: "shloka" | "namasmaran"; errors: any; message: string }>
-  ) => {
-    state[action.payload.type].loading = false;
-    state[action.payload.type].errors = action.payload.errors;
-    state[action.payload.type].message = action.payload.message;
-  },
+      state[action.payload.type].message = action.payload.message;
+    },
+    updateDailyTaskProgressFailure: (
+      state,
+      action: PayloadAction<{ type: "shloka" | "namasmaran"; errors: any; message: string }>
+    ) => {
+      state[action.payload.type].loading = false;
+      state[action.payload.type].errors = action.payload.errors;
+      state[action.payload.type].message = action.payload.message;
+    },
+
+    //update ref
+    updateDailyTaskRefRequest: (state, action: PayloadAction<{ type: "shloka" | "namasmaran" }>) => {
+      state[action.payload.type].loading = true;
+      state[action.payload.type].errors = null;
+      state[action.payload.type].message = null;
+    },
+    updateDailyTaskRefSuccess: (
+      state,
+      action: PayloadAction<{ type: "shloka" | "namasmaran"; data: DailyTask; message: string }>
+    ) => {
+      state[action.payload.type].loading = false;
+      const data = action.payload.data
+      const name = data.name;
+      const target = data.target;
+      const link = data.link;
+      const description = data.description;
+      const start_date = data.start_date;
+      const end_date = data.end_date;
+
+      const  daily_task_ref_id = data.id
+      const typeList = state[action.payload.type].data.map(task =>
+        task.daily_task_ref_id === daily_task_ref_id
+          ? { ...task, name, target, link, description, start_date, end_date} // ✅ Update the matched entry
+          : task
+      );
+
+      state[action.payload.type].data = typeList;
+
+      state[action.payload.type].message = action.payload.message;
+    },
+    updateDailyTaskRefFailure: (
+      state,
+      action: PayloadAction<{ type: "shloka" | "namasmaran"; errors: any; message: string }>
+    ) => {
+      state[action.payload.type].loading = false;
+      state[action.payload.type].errors = action.payload.errors;
+      state[action.payload.type].message = action.payload.message;
+    },
   },
 });
 
@@ -101,7 +140,10 @@ export const {
   createDailyTaskFailure,
   updateDailyTaskProgressRequest,
   updateDailyTaskProgressSuccess,
-  updateDailyTaskProgressFailure
+  updateDailyTaskProgressFailure,
+  updateDailyTaskRefRequest,
+  updateDailyTaskRefSuccess,
+  updateDailyTaskRefFailure
 } =
   dailyTaskSlice.actions;
 

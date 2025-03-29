@@ -1,0 +1,89 @@
+/* 🔹 Default Container */
+.daily-task-details {
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 6px;
+  background-color: #fff5e1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  overflow: hidden;
+  text-align: center;
+  margin: 2px;
+}
+
+/* 🔹 Empty State */
+.daily-task-details__empty {
+  text-align: center;
+  color: #777;
+  font-size: 16px;
+  padding: 20px;
+}
+
+/* 🔹 Title */
+.daily-task-details__title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #7D4B21; /* Earthy brown */
+}
+
+/* 🔹 Image */
+.daily-task-details__image {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+/* 🔹 Progress */
+.daily-task-details__progress {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+/* 🔹 Description */
+.daily-task-details__description {
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  transition: max-height 0.3s ease-in-out;
+  padding: 10px;
+  background-color: #FFF1D6;
+  border-radius: 4px;
+}
+
+.daily-task-details__description--collapsed {
+  max-height: 40px;
+  overflow: hidden;
+}
+
+.daily-task-details__description--expanded {
+  max-height: none;
+}
+
+/* 🔹 Action Buttons */
+.daily-task-details__actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.daily-task-details__edit-btn, .daily-task-details__delete-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.daily-task-details__edit-btn {
+  background-color: #ffcc00;
+  color: #333;
+}
+
+.daily-task-details__delete-btn {
+  background-color: #ff6666;
+  color: #fff;
+}

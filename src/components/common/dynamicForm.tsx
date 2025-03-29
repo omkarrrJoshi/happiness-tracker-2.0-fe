@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./dynamicForm.css";
 
 export interface FormField {
@@ -30,8 +30,22 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
     fields.reduce((acc, field) => ({ ...acc, [field.name]: initialData[field.name] || "" }), {})
   );
 
-  const [isDailyTarget, setIsDailyTarget] = useState(false); // ✅ Toggle between single & daily targets
-  const [dailyTargets, setDailyTargets] = useState<(number | "")[]>(Array(7).fill(1)); // ✅ Default to 1 for all days
+  const [isDailyTarget, setIsDailyTarget] = useState(Array.isArray(initialData.target)); // ✅ Toggle based on initial data
+
+  const [dailyTargets, setDailyTargets] = useState<(number | "")[]>(
+    Array.isArray(initialData.target) ? initialData.target : Array(7).fill(initialData.target || 1)
+  );
+
+  // ✅ Update dailyTargets when initialData changes (important when reopening the form)
+  useEffect(() => {
+    if (Array.isArray(initialData.target)) {
+      setDailyTargets(initialData.target);
+      setIsDailyTarget(true);
+    } else {
+      setDailyTargets(Array(7).fill(initialData.target || 1));
+      setIsDailyTarget(false);
+    }
+  }, [initialData.target]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -39,19 +53,19 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
 
   const handleDailyTargetChange = (index: number, value: string) => {
     const newTargets = [...dailyTargets];
-    newTargets[index] = value === "" ? "" : Number(value) || 1; // ✅ Allows empty input, prevents NaN
+    newTargets[index] = value === "" ? "" : Number(value) || 1;
     setDailyTargets(newTargets);
   };
 
   const handleSingleTargetChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value === "" ? "" : Number(e.target.value) || 1; // ✅ Allow empty input
+    const value = e.target.value === "" ? "" : Number(e.target.value) || 1;
     setDailyTargets(Array(7).fill(value));
   };
-  
-  // Ensure empty fields are converted to 1 when submitting
+
+  // ✅ Ensure empty fields are converted to 1 when submitting
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const finalTargets = dailyTargets.map(target => (target === "" ? 1 : target)); // ✅ Convert empty to 1 only on submit
+    const finalTargets = dailyTargets.map(target => (target === "" ? 1 : target));
     const finalData = {
       ...formData,
       target: isDailyTarget ? finalTargets : Array(7).fill(finalTargets[0]),

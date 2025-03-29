@@ -1,3 +1,4 @@
+import { NAMASMARAN, SHLOKA } from "../../constants/constants";
 import { DailyTask } from "../../types/models/dailyTask";
 import { AppState, DailyTaskState } from "../../types/stateTypes";
 
@@ -35,4 +36,14 @@ export const getNamasmaranError = (state: AppState): string | null => {
 
 export const getNamasmaranMessage = (state: AppState): string | null => {
   return getDailyTaskReducer(state).namasmaran.message;
+}
+
+export const getDailyTaskByRefId = (state: AppState, id: string | undefined, type: string | undefined): DailyTask | undefined => {
+  if(type === SHLOKA){
+    return getShlokaData(state).find(task => task.daily_task_ref_id === id);
+  }
+  else if(type === NAMASMARAN){
+    return getNamasmaranData(state).find(task => task.daily_task_ref_id === id);
+  }
+  return undefined;
 }

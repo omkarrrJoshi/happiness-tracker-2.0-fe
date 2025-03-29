@@ -42,6 +42,7 @@ const CustomDatePicker: React.FC = () => {
           onChange={handleDateChange}
           inline
           popperPlacement="bottom-end"
+          maxDate={new Date()}
         />
       )}
     </div>

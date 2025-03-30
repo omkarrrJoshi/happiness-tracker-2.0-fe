@@ -1,0 +1,11 @@
+.image-loader {
+  width: 100px;
+  height: 100px;
+  background-color: #f3f3f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #666;
+}

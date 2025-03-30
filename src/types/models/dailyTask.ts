@@ -27,7 +27,8 @@ export interface CreateDailyTaskPayload {
   description?: string,
   date: string,
   start_date: string,
-  end_date?: string
+  end_date?: string,
+  image_url?: string,
 }
 
 export interface UpdateDailyTaskProgressPayload {
@@ -49,6 +50,7 @@ export interface UpdateDailyTaskRefPayload {
   end_date?: string,
   link?: string,
   description?: string,
+  image_url?: string,
 }
 
 export interface UpdateDailyTaskRefRequest {

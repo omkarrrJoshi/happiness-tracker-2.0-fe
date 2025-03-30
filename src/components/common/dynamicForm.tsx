@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./dynamicForm.css";
+import Loader from "./loader";
 
 export interface FormField {
   name: string;
@@ -15,7 +16,8 @@ interface DynamicFormProps {
   initialData?: Record<string, any>;
   onSubmit: (formData: Record<string, any>) => void;
   onClose: () => void;
-  enableDailyTarget?: boolean; // ✅ New prop to enable daily target feature
+  enableDailyTarget?: boolean;
+  enableImageUpload?: boolean;
 }
 
 const DynamicForm: React.FC<DynamicFormProps> = ({
@@ -24,19 +26,24 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
   initialData = {},
   onSubmit,
   onClose,
-  enableDailyTarget = false, // Default is false
+  enableDailyTarget = false,
+  enableImageUpload = false,
 }) => {
   const [formData, setFormData] = useState<Record<string, any>>(
     fields.reduce((acc, field) => ({ ...acc, [field.name]: initialData[field.name] || "" }), {})
   );
-
-  const [isDailyTarget, setIsDailyTarget] = useState(Array.isArray(initialData.target)); // ✅ Toggle based on initial data
-
+  
+  const [isDailyTarget, setIsDailyTarget] = useState(Array.isArray(initialData.target));
   const [dailyTargets, setDailyTargets] = useState<(number | "")[]>(
     Array.isArray(initialData.target) ? initialData.target : Array(7).fill(initialData.target || 1)
   );
+  
+  const [imagePreview, setImagePreview] = useState<string | null>(initialData.image_url || null);
 
-  // ✅ Update dailyTargets when initialData changes (important when reopening the form)
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
+
+
   useEffect(() => {
     if (Array.isArray(initialData.target)) {
       setDailyTargets(initialData.target);
@@ -62,13 +69,43 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
     setDailyTargets(Array(7).fill(value));
   };
 
-  // ✅ Ensure empty fields are converted to 1 when submitting
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setSelectedImage(file);
+      setImagePreview(URL.createObjectURL(file));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    let imageUrl = initialData.image_url || "";
+    
+    if (selectedImage) {
+      setIsUploading(true); 
+      const formData = new FormData();
+      formData.append("file", selectedImage);
+      formData.append("upload_preset", "daily_task_unsigned_images"); // Change this to your Cloudinary preset
+      
+      try {
+        const response = await fetch("https://api.cloudinary.com/v1_1/daiqdj7oo/image/upload", {
+          method: "POST",
+          body: formData,
+        });
+        const data = await response.json();
+        imageUrl = data.secure_url;
+      } catch (error) {
+        console.error("Image upload failed", error);
+      } finally {
+        setIsUploading(false); // Hide loader once upload completes
+      }
+    }
+    
     const finalTargets = dailyTargets.map(target => (target === "" ? 1 : target));
     const finalData = {
       ...formData,
       target: isDailyTarget ? finalTargets : Array(7).fill(finalTargets[0]),
+      image_url: imageUrl,
     };
     onSubmit(finalData);
   };
@@ -94,11 +131,18 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
             </div>
           ))}
 
-          {/* ✅ Optional Daily Target Feature */}
+          {enableImageUpload && (
+            <div className="form-group">
+              <label>Upload Image</label>
+              <input type="file" accept="image/*" onChange={handleImageChange} />
+              {imagePreview && <img src={imagePreview} alt="Preview" className="image-preview" />}
+              {isUploading && <Loader />}
+            </div>
+          )}
+
           {enableDailyTarget && (
             <div className="form-group">
               <label className="required">Target</label>
-
               <button type="button" className="toggle-btn" onClick={() => setIsDailyTarget(!isDailyTarget)}>
                 {isDailyTarget ? "Switch to Single Target" : "Switch to Daily Target"}
               </button>

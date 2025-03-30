@@ -11,7 +11,7 @@ const DailyTaskDetailsHolder: React.FC = () => {
   const dailyTask = useSelector((state: AppState) => getDailyTaskByRefId(state, task_ref_id, type));
 
   if (!dailyTask) {
-    return <div>Task not found</div>;
+    return <div>Task not found, go back and come again</div>;
   }
 
   return (

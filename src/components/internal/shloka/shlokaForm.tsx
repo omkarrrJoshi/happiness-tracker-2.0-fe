@@ -43,6 +43,7 @@ const ShlokaForm: React.FC<ShlokaFormProps> = ({ isOpen, onClose, type, initialD
       date: selectedDate,
       start_date: data.start_date,
       end_date: data.end_date || undefined,
+      image_url: data.image_url || undefined,
     };
 
     const updatePayloadData = {
@@ -54,9 +55,9 @@ const ShlokaForm: React.FC<ShlokaFormProps> = ({ isOpen, onClose, type, initialD
         end_date: data.end_date || undefined,
         link: data.link || undefined,
         description: data.description || undefined,
+        image_url: data.image_url || undefined,
       }
     }
-    console.log("initialData?.id:", initialData?.id);
     if (isUpdateMode) {
       dispatch({ type: UPDATE_DAILY_TASK_REF_REQUEST, payload: { ...updatePayloadData, id: initialData?.id } }); // ✅ Update existing task
     } else {
@@ -74,6 +75,7 @@ const ShlokaForm: React.FC<ShlokaFormProps> = ({ isOpen, onClose, type, initialD
       onSubmit={handleSubmit}
       onClose={onClose}
       enableDailyTarget
+      enableImageUpload
     />
   );
 };

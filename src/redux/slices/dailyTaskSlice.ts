@@ -108,11 +108,12 @@ const dailyTaskSlice = createSlice({
       const description = data.description;
       const start_date = data.start_date;
       const end_date = data.end_date;
+      const image_url = data.image_url;
 
       const  daily_task_ref_id = data.id
       const typeList = state[action.payload.type].data.map(task =>
         task.daily_task_ref_id === daily_task_ref_id
-          ? { ...task, name, target, link, description, start_date, end_date} // ✅ Update the matched entry
+          ? { ...task, name, target, link, description, start_date, end_date, image_url} // ✅ Update the matched entry
           : task
       );
 

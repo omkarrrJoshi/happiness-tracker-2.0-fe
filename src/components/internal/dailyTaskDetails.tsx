@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './dailyTaskDetails.css';
 import ShlokaForm from "./shloka/shlokaForm";
+import ImageLoader from "../common/ImageLoader";
 
 interface DailyTaskDetailsProps {
   task_ref_id: string;
@@ -13,7 +14,7 @@ interface DailyTaskDetailsProps {
   start_date: string;
   end_date: string | null;
   target: number[];
-  type: string; // ✅ Pass type to differentiate task types
+  type: string;
 }
 
 const DailyTaskDetails: React.FC<DailyTaskDetailsProps> = ({
@@ -30,16 +31,28 @@ const DailyTaskDetails: React.FC<DailyTaskDetailsProps> = ({
   type
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isEditOpen, setIsEditOpen] = useState(false); // ✅ Modal state for edit form
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isImageLoading, setIsImageLoading] = useState(true); // ✅ Track image loading
 
-  const DEFAULT_CLASS_NAME = "daily-task-details"; // ✅ Default Class Prefix
+  const DEFAULT_CLASS_NAME = "daily-task-details";
 
   return (
     <div className={DEFAULT_CLASS_NAME}>
       <h3 className={`${DEFAULT_CLASS_NAME}__title`}>{name}</h3>
-      
+
+      {/* ✅ Show Loader Until Image Loads */}
       {image_url && (
-        <img src={image_url} alt={name} className={`${DEFAULT_CLASS_NAME}__image`} />
+        <div className={`${DEFAULT_CLASS_NAME}__image-container`}>
+          {isImageLoading && <ImageLoader />} {/* Show loader while loading */}
+          <img
+            src={image_url}
+            alt={name}
+            className={`${DEFAULT_CLASS_NAME}__image`}
+            onLoad={() => setIsImageLoading(false)} // Hide loader when loaded
+            onError={() => setIsImageLoading(false)} // Hide loader if failed
+            style={{ display: isImageLoading ? "none" : "block" }} // Hide image until loaded
+          />
+        </div>
       )}
 
       <p className={`${DEFAULT_CLASS_NAME}__progress`}>
@@ -58,7 +71,6 @@ const DailyTaskDetails: React.FC<DailyTaskDetailsProps> = ({
         <button className={`${DEFAULT_CLASS_NAME}__delete-btn`}>Delete</button>
       </div>
 
-      {/* ✅ Edit Form Modal */}
       {isEditOpen && (
         <ShlokaForm
           isOpen={isEditOpen}
@@ -73,8 +85,9 @@ const DailyTaskDetails: React.FC<DailyTaskDetailsProps> = ({
             link,
             start_date,
             end_date,
-            target
-          }} // ✅ Pass current data as initial values
+            target,
+            image_url
+          }}
         />
       )}
     </div>

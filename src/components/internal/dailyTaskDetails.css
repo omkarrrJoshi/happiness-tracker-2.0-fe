@@ -44,7 +44,7 @@
 .daily-task-details__image {
   width: 100%;
   max-width: 250px;
-  max-height: 180px; /* ✅ Restricts height to prevent large images */
+  max-height: 250px; /* ✅ Restricts height to prevent large images */
   object-fit: contain; /* ✅ Ensures full image visibility without distortion */
   border-radius: 6px;
   transition: opacity 0.3s ease-in-out;

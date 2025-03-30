@@ -27,27 +27,29 @@
   color: #7D4B21; /* Earthy brown */
 }
 
-/* 🔹 Image Loader (Ensure Centering) */
+/* 🔹 Image Container (Ensures Centering) */
 .daily-task-details__image-container {
   width: 100%;
   max-width: 250px;
-  height: 250px;
+  height: 250px; /* Keeps container size fixed */
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  margin: 0 auto; /* ✅ Ensures centering */
+  margin: 0 auto; /* ✅ Centers horizontally */
+  overflow: hidden; /* ✅ Ensures no image overflow */
 }
 
-/* 🔹 Image */
+/* 🔹 Image (Restricted Height) */
 .daily-task-details__image {
   width: 100%;
   max-width: 250px;
-  height: auto;
+  max-height: 180px; /* ✅ Restricts height to prevent large images */
+  object-fit: contain; /* ✅ Ensures full image visibility without distortion */
   border-radius: 6px;
   transition: opacity 0.3s ease-in-out;
-  display: block; /* ✅ Prevents inline image spacing issues */
-  margin: 0 auto; /* ✅ Ensures centering */
+  display: block;
+  margin: 0 auto;
 }
 
 

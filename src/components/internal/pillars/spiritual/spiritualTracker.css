@@ -1,5 +1,8 @@
 /* 🔹 Tracker Container */
 .tracker-spiritual-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 12px;
   text-align: center;
   background: #FFF5E1; /* Soft peachy background */

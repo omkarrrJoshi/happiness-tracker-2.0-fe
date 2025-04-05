@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCurrentDate, getSelectedDate, getMonthEnd, getMonthStart, getWeekEnd, getWeekStart } from "../../../../redux/selectors/dateSelector";
+import { getSelectedDate, getMonthEnd, getMonthStart, getWeekEnd, getWeekStart } from "../../../../redux/selectors/dateSelector";
 import { FETCH_DAILY_TASK_TRACKER_REQUEST } from "../../../../redux/actions/action_keys";
 import { getUserId } from "../../../../redux/selectors/userSelector";
 import { getNamasmaranTrackerData, getShlokaTrackerData } from "../../../../redux/selectors/dailyTaskTrackerSelector";
 import PieChartTracker from "../../../common/tracker/pieChartTracker";
 import "./spiritualTracker.css";
 import { SHLOKA, NAMASMARAN } from "../../../../constants/constants";
-import { DailyTaskTracker } from "../../../../types/models/dailyTask";
+import { DailyTask, DailyTaskTracker } from "../../../../types/models/dailyTask";
+import { getNamasmaranData, getShlokaData } from "../../../../redux/selectors/dailyTaskSelector";
 
 interface TrackerPageProps {
   pillar: string;
@@ -24,13 +25,18 @@ const SpiritualTracker: React.FC<TrackerPageProps> = ({ pillar }) => {
   const weekEnd = useSelector(getWeekEnd);
   const monthStart = useSelector(getMonthStart);
   const monthEnd = useSelector(getMonthEnd);
+  const shlokaList = useSelector(getShlokaData)
+  const namasmaranList = useSelector(getNamasmaranData)
 
   const [trackerType, setTrackerType] = useState<"daily" | "weekly" | "monthly" | "custom">("daily");
   const [selectedType, setSelectedType] = useState<string>(SHLOKA); // 🔹 Default to Shloka
+  const [selectedDailyTaskRefId, setSelectedDailyTaskRefId] = useState<string>("all");  // Default to all
   const [startDate, setStartDate] = useState(weekStart);
   const [endDate, setEndDate] = useState(weekEnd);
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(true);
 
+  const dailyTaskList: DailyTask[] = selectedType === SHLOKA ? shlokaList : namasmaranList;
+  
   useEffect(() => {
     if(trackerType === "daily") {
       setStartDate(currentDate);
@@ -57,9 +63,10 @@ const SpiritualTracker: React.FC<TrackerPageProps> = ({ pillar }) => {
         start_date: startDate,
         end_date: endDate,
         type: selectedType, // ✅ Fetch data for selected type
+        ref_id: selectedDailyTaskRefId
       },
     });
-  }, [startDate, endDate, selectedType, dispatch, user_id]);
+  }, [startDate, endDate, selectedType, selectedDailyTaskRefId, dispatch, user_id]);
 
   const shlokaTrackerData = useSelector(getShlokaTrackerData);
   const namasmaranTrackerData = useSelector(getNamasmaranTrackerData);
@@ -116,13 +123,29 @@ const SpiritualTracker: React.FC<TrackerPageProps> = ({ pillar }) => {
         </label>
       </div>
 
-      {/* 🔹 Type Selector (Shloka/Namasmaran) */}
-      <div className={`${DEFAULT_CLASS_NAME}-type-selector`}>
-        <label>Type:</label>
-        <select value={selectedType} onChange={(e) => setSelectedType(e.target.value)}>
-          <option value={SHLOKA}>Shloka</option>
-          <option value={NAMASMARAN}>Namasmaran</option>
-        </select>
+      <div className={`${DEFAULT_CLASS_NAME}-selector`}> 
+        {/* 🔹 Type Selector (Shloka/Namasmaran) */}
+        <div className={`${DEFAULT_CLASS_NAME}-type-selector`}>
+          <label>Type:</label>
+          <select value={selectedType} onChange={(e) => setSelectedType(e.target.value)}>
+            <option value={SHLOKA}>Shloka</option>
+            <option value={NAMASMARAN}>Namasmaran</option>
+          </select>
+        </div>
+
+        <div className={`${DEFAULT_CLASS_NAME}-daily-task-selector`}>
+          <label>{selectedType}:</label>
+          <select value={selectedDailyTaskRefId} onChange={(e) => setSelectedDailyTaskRefId(e.target.value)}>
+            <option value="all">All</option>
+            {
+              dailyTaskList.map((dailyTask) => {
+                return (
+                  <option value={dailyTask.daily_task_ref_id}>{dailyTask.name}</option>
+                )
+              })
+            }
+          </select>
+        </div>
       </div>
 
       {/* 🔹 Date Pickers */}

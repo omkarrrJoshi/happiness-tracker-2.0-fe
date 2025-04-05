@@ -35,7 +35,7 @@
 }
 
 /* 🔹 Type Selector */
-.tracker-spiritual-type-selector {
+.tracker-spiritual-selector {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,13 +43,13 @@
   margin-bottom: 10px;
 }
 
-.tracker-spiritual-type-selector label {
+.tracker-spiritual-selector label {
   font-size: 14px;
   font-weight: bold;
   color: #7D4B21;
 }
 
-.tracker-spiritual-type-selector select {
+.tracker-spiritual-selector select {
   padding: 6px;
   border: 1px solid #E6A23C;
   border-radius: 6px;

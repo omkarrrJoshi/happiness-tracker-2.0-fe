@@ -63,7 +63,8 @@ export interface FetchDailyTasTrackerRequest {
   user_id: string, 
   type: string,
   start_date: string,
-  end_date: string
+  end_date: string,
+  ref_id: string
 }
 
 export interface DailyTaskTracker {

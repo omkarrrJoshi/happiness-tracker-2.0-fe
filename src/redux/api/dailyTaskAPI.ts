@@ -32,5 +32,6 @@ export const fetchDailyTaskTracker = async (userId: string, request: FetchDailyT
   queryParams.set("type", request.type)
   queryParams.set("start_date", request.start_date)
   queryParams.set("end_date", request.end_date)
+  queryParams.set("ref_id",request.ref_id)
   return apiClient(FETCH_DAILY_TASKTRACKER, GET, undefined, queryParams)
 };

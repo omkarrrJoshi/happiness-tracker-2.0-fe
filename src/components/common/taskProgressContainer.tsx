@@ -8,6 +8,7 @@
   import { UPDATE_DAILY_TASK_PROGREASS_REQUEST } from "../../redux/actions/action_keys";
   import CounterBox from "./counterBox";
 import { useNavigate } from "react-router-dom";
+import { showNotification } from "../../utils/notification";
 
   export interface ProgressContainerProps {
     task_ref_id: string;
@@ -47,11 +48,6 @@ import { useNavigate } from "react-router-dom";
     const toggleMenu = () => setMenuOpen(!menuOpen);
     const closeMenu = () => setMenuOpen(false);
 
-    const options = [
-      { label: "Update", action: () => alert(`Update ${label}`) }, // ✅ Open progress updater on update
-      { label: "Delete", action: () => alert(`Delete ${label}`) },
-    ];
-
     const user_id = useSelector(getUserId)
 
     const updateProgress = (newProgress: number):void => {
@@ -69,6 +65,20 @@ import { useNavigate } from "react-router-dom";
       })
     }
 
+    const handleLinkAction = () => {
+      if (link) {
+        window.open(link, "_blank"); // ✅ opens in new tab
+      } else {
+        showNotification(`No resource link found for this ${type}.`);
+      }
+    };
+    
+    const options = [
+      { label: "Update", action: () => alert(`Update ${label}`) }, // ✅ Open progress updater on update
+      { label: "Delete", action: () => alert(`Delete ${label}`) },
+      { label: "Resource Url", action: () => handleLinkAction() }
+    ];
+
     const completed = progress >= target;
 
     const DEFAULT_CLASS_NAME = `task-progress-container-${pillar}`;
@@ -81,7 +91,9 @@ import { useNavigate } from "react-router-dom";
               <img src="/svg-icons/task-completed.svg" alt="completed" />
             )}
           </div>
-          <div className="col-6" onClick={() => navigate(`/spiritual/${type}/${task_ref_id}`)}>{label}</div>
+          <div className="col-6" onClick={() => navigate(`/spiritual/${type}/${task_ref_id}`)}>
+              {label}
+          </div>
           <div className="col-3"> {/* ✅ Click to open updater */}
           <CounterBox
               progress={progress} 

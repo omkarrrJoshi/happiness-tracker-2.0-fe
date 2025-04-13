@@ -25,7 +25,7 @@ body.modal-open .modal-overlay {
 }
 
 /* ✅ Progress Updater Modal */
-.progress-updater-spiritual {
+.progress-or-target-updater-spiritual {
   background: #FFF5E1; /* Soft peachy background */
   padding: 16px;
   border-radius: 12px;
@@ -52,11 +52,11 @@ body.modal-open .modal-overlay {
 }
 
 /* ✅ Input Field */
-.progress-updater-spiritual-input-container {
+.progress-or-target-updater-spiritual-input-container {
   margin: 12px 0;
 }
 
-.progress-updater-spiritual-input {
+.progress-or-target-updater-spiritual-input {
   padding: 10px;
   border: 1px solid #E6A23C; /* Soft golden border */
   border-radius: 8px;
@@ -65,14 +65,14 @@ body.modal-open .modal-overlay {
 }
 
 /* ✅ Buttons */
-.progress-updater-spiritual-button-group {
+.progress-or-target-updater-spiritual-button-group {
   display: flex;
   flex-direction: column; /* ✅ Stack buttons vertically for mobile */
   gap: 8px;
   margin-top: 12px;
 }
 
-.progress-updater-spiritual-button-group .btn {
+.progress-or-target-updater-spiritual-button-group .btn {
   width: 100%;
   padding: 12px;
   border: none;
@@ -85,27 +85,27 @@ body.modal-open .modal-overlay {
 }
 
 /* ✅ Overwrite Button */
-.progress-updater-spiritual-button-group .btn:first-child {
+.progress-or-target-updater-spiritual-button-group .btn:first-child {
   background: #4CAF50; /* Soothing Green */
   color: white;
 }
 
-.progress-updater-spiritual-button-group .btn:first-child:active {
+.progress-or-target-updater-spiritual-button-group .btn:first-child:active {
   background: #388E3C; /* Darker green */
 }
 
 /* ✅ Append Button */
-.progress-updater-spiritual-button-group .btn:last-child {
+.progress-or-target-updater-spiritual-button-group .btn:last-child {
   background: #81C784; /* Soft Pastel Green */
   color: white;
 }
 
-.progress-updater-spiritual-button-group .btn:last-child:active {
+.progress-or-target-updater-spiritual-button-group .btn:last-child:active {
   background: #66BB6A; /* Medium Green */
 }
 
 /* ✅ Note Section */
-.progress-updater-spiritual-note {
+.progress-or-target-updater-spiritual-note {
   margin-top: 12px;
   font-size: 12px;
   color: #7D4B21; /* Earthy brown */
@@ -113,6 +113,6 @@ body.modal-open .modal-overlay {
   padding: 0 8px;
 }
 
-.progress-updater-spiritual-note p {
+.progress-or-target-updater-spiritual-note p {
   margin: 3px 0;
 }

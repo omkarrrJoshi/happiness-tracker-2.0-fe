@@ -37,7 +37,7 @@ const ShlokaForm: React.FC<ShlokaFormProps> = ({ isOpen, onClose, type, initialD
       type,
       pillar: "spiritual",
       target: Array.isArray(data.target) ? data.target : Array(7).fill(data.target || 1), // ✅ Ensure target is an array
-      name: data.name,
+      name: data.name.trim(),
       link: data.link || undefined,
       description: data.description || undefined,
       date: selectedDate,

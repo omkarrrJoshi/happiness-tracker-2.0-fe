@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { DailyTaskState } from "../../types/stateTypes";
 import { DailyTask } from "../../types/models/dailyTask";
+import { showImageNotification } from "../../utils/notification";
 
 
 const initialState: DailyTaskState = {
@@ -66,18 +67,31 @@ const dailyTaskSlice = createSlice({
       action: PayloadAction<{ type: "shloka" | "namasmaran"; data: DailyTask; message: string }>
     ) => {
       state[action.payload.type].loading = false;
-      const data = action.payload.data
-      const daily_progress = data.daily_progress;
-      const daily_target = data.daily_target;
-      const daily_task_ref_id = data.daily_task_ref_id
 
-      const typeList = state[action.payload.type].data.map(task =>
-        task.daily_task_ref_id === daily_task_ref_id
-          ? { ...task, daily_progress, daily_target } // ✅ Update the matched entry
-          : task
+      const data = action.payload.data;
+      const { daily_progress, daily_target, daily_task_ref_id } = data;
+
+      const taskList = state[action.payload.type]?.data || [];
+
+      const matchedTask = taskList.find(
+        task => task.daily_task_ref_id === daily_task_ref_id
       );
 
-      state[action.payload.type].data = typeList;
+      if(matchedTask && daily_progress >= daily_target && daily_progress > matchedTask?.daily_progress){
+        const imageUrl = matchedTask?.image_url;
+
+        showImageNotification(
+          `You have successfully acheived today's target for ${matchedTask?.name}`,
+          imageUrl || "",
+          matchedTask?.name || "Task Image"
+        );
+      }
+
+      // ✅ Directly update the matched task
+      if (matchedTask) {
+        matchedTask.daily_progress = daily_progress;
+        matchedTask.daily_target = daily_target;
+      }
 
       state[action.payload.type].message = action.payload.message;
     },

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import ProgressUpdater from "../internal/progressUpdater";
+import ProgressOrTargetUpdater from "../internal/progressOrTargetUpdater";
 import './counterBox.css'
 
 interface CounterBoxProps {
   progress: number;
-  updateProgress: (newProgress: number) => void;
+  updateProgress: (update: Partial<{ daily_progress: number; daily_target: number }>) => void
   enable: boolean;
   label: string;
   pillar: string;
@@ -19,11 +19,11 @@ const CounterBox: React.FC<CounterBoxProps> = ({ progress, updateProgress, enabl
   const DEFAULT_CLASS_NAME = "counter-box";
 
   const increment = () => {
-    if (enable) updateProgress(progress + 1);
+    if (enable) updateProgress({ daily_progress:progress + 1});
   };
 
   const decrement = () => {
-    if (enable && progress > 0) updateProgress(progress - 1);
+    if (enable && progress > 0) updateProgress({ daily_progress: progress - 1});
   };
 
   return (
@@ -45,13 +45,14 @@ const CounterBox: React.FC<CounterBoxProps> = ({ progress, updateProgress, enabl
       </div>
 
       {/* ✅ Progress Updater Modal */}
-      <ProgressUpdater
+      <ProgressOrTargetUpdater
+        toUpdate="progress"
         isOpen={isUpdaterOpen}
         onClose={closeUpdater}
         pillar={pillar}
         name={label}
-        daily_progress={progress}
-        updateProgress={updateProgress}
+        current_value={progress}
+        updateFunc={updateProgress}
       />
     </div>
   );

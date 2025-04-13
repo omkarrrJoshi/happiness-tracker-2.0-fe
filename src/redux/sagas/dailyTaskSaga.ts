@@ -33,7 +33,6 @@ function* handleFetchDailyTask(action: PayloadAction<FetchDailyTaskPayload>): Ge
     yield put(fetchDailyTaskRequest( {type} ));
 
     const result: ApiResponse = yield call(fetchDailyTask, user_id, date, type);
-    // showNotification(result.message)
     
     if (result.success) {
       yield put(fetchDailyTaskSuccess({ type, data: result.data, message: result.message }));
@@ -52,10 +51,11 @@ function* handleCreateDailyTask(action: PayloadAction<CreateDailyTaskPayload>): 
     yield put(createDailyTaskRequest( {type} ));
 
     const result: ApiResponse = yield call(createDailyTask, userId, action.payload);
-    showNotification(result.message)
     if (result.success) {
+      showNotification(result.message, "success")
       yield put(createDailyTaskSuccess({ type, data: result.data, message: result.message }));
     } else {
+      showNotification(result.message, "error", 6000)
       yield put(createDailyTaskFailure({ type, errors: result.errors, message: result.message }));
     }
   } catch (error: any) {
@@ -70,10 +70,11 @@ function* handleUpdateDailyTaskProgress(action: PayloadAction<UpdateDailyTaskPro
     yield put(updateDailyTaskProgressRequest( {type} ));
 
     const result: ApiResponse = yield call(updateDailyTaskProgress, user_id, action.payload);
-    showNotification(result.message)
     if (result.success) {
+      showNotification(result.message, "success")
       yield put(updateDailyTaskProgressSuccess({ type, data: result.data, message: result.message }));
     } else {
+      showNotification(result.message, "error", 6000)
       yield put(updateDailyTaskProgressFailure({ type, errors: result.errors, message: result.message }));
     }
   } catch (error: any) {
@@ -87,10 +88,11 @@ function* handleUpdateDailyTaskRef(action: PayloadAction<UpdateDailyTaskRefReque
     yield put(updateDailyTaskRefRequest( {type} ));
 
     const result: ApiResponse = yield call(updateDailyTaskRef, action.payload);
-    showNotification(result.message)
     if (result.success) {
+      showNotification(result.message, "success")
       yield put(updateDailyTaskRefSuccess({ type, data: result.data, message: result.message }));
     } else {
+      showNotification(result.message, "error", 6000)
       yield put(updateDailyTaskRefFailure({ type, errors: result.errors, message: result.message }));
     }
   } catch (error: any) {
@@ -107,7 +109,6 @@ function* handleFetchDailyTaskTracker(action: PayloadAction<FetchDailyTasTracker
     yield put(fetchDailyTaskTrackerRequest( {type} ));
 
     const result: ApiResponse = yield call(fetchDailyTaskTracker, user_id, action.payload);
-    // showNotification(result.message)
     if (result.success) {
       yield put(fetchDailyTaskTrackerSuccess({ type, data: result.data, message: result.message }));
     } else {

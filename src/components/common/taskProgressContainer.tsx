@@ -9,6 +9,7 @@
   import CounterBox from "./counterBox";
 import { useNavigate } from "react-router-dom";
 import { showNotification } from "../../utils/notification";
+import ProgressOrTargetUpdater from "../internal/progressOrTargetUpdater";
 
   export interface ProgressContainerProps {
     task_ref_id: string;
@@ -44,26 +45,50 @@ import { showNotification } from "../../utils/notification";
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [menuOpen, setMenuOpen] = useState(false);
+    const [isUpdaterOpen, setIsUpdaterOpen] = useState(false); // ✅ State for opening ProgressUpdater
+
+    const openUpdater = () => {
+      const confirmUpdate = window.confirm(
+        `This will update the daily target for "${label}" for today only.\n\n` +
+        `If you want to update the target for other dates, please click on the "${label}" from table and choose "Edit".\n\n` +
+        `Do you want to continue for updating only todays daily target?`
+      );;
+      if (confirmUpdate) {
+        setIsUpdaterOpen(true);
+      }
+    };
+    const closeUpdater = () => setIsUpdaterOpen(false);
 
     const toggleMenu = () => setMenuOpen(!menuOpen);
     const closeMenu = () => setMenuOpen(false);
 
     const user_id = useSelector(getUserId)
 
-    const updateProgress = (newProgress: number):void => {
+    const updateTaskValue = (update: Partial<{ daily_progress: number; daily_target: number }>): void => {
       const updatedBody: UpdateDailyTaskProgressRequest = {
         user_id: user_id,
         id: task_progress_id,
         type: type,
-        body: {
-          daily_progress: newProgress
-        }
-      }
+        body: update,
+      };
+    
       dispatch({
         type: UPDATE_DAILY_TASK_PROGREASS_REQUEST,
-        payload: updatedBody
-      })
-    }
+        payload: updatedBody,
+      });
+    };
+
+    const handleDeleteAction = () => {
+      const confirmDelete = window.confirm(
+        `Are you sure you want to delete today's target for "${label}"?\n\n` +
+        `This will set the daily target to 0 for today only. Your progress will also set to 0.\n\n` +
+        `Rest assure: you can update daily target after deletion as well.\n\n` +
+        `Do you want to continue?`
+      );
+      if (confirmDelete) {
+        updateTaskValue({ daily_target: 0, daily_progress: 0 });
+      }
+    };
 
     const handleLinkAction = () => {
       if (link) {
@@ -72,16 +97,17 @@ import { showNotification } from "../../utils/notification";
         showNotification(`No resource link found for this ${type}.`);
       }
     };
+
     
     const options = [
-      { label: "Update", action: () => alert(`Update ${label}`) }, // ✅ Open progress updater on update
-      { label: "Delete", action: () => alert(`Delete ${label}`) },
+      { label: "Update", action: () => openUpdater() }, // ✅ Open progress updater on update
+      { label: "Delete", action: () => handleDeleteAction() },
       { label: "Resource Url", action: () => handleLinkAction() }
     ];
 
-    const completed = progress >= target;
+    const completed = target !== 0 && progress >= target;
 
-    const DEFAULT_CLASS_NAME = `task-progress-container-${pillar}`;
+    const DEFAULT_CLASS_NAME = target === 0 ? `deleted-task-progress-container-${pillar}` : `task-progress-container-${pillar}`;
 
     return (
       <>
@@ -97,8 +123,8 @@ import { showNotification } from "../../utils/notification";
           <div className="col-3"> {/* ✅ Click to open updater */}
           <CounterBox
               progress={progress} 
-              updateProgress={updateProgress} 
-              enable={true} 
+              updateProgress={updateTaskValue} 
+              enable={target !== 0} 
               label={label}
               pillar={pillar}
             />
@@ -109,6 +135,16 @@ import { showNotification } from "../../utils/notification";
             <MenuDropdown isOpen={menuOpen} onClose={closeMenu} options={options} />
           </div>
         </div>
+        {/* ✅ Progress Updater Modal */}
+        <ProgressOrTargetUpdater
+          toUpdate="target"
+          isOpen={isUpdaterOpen}
+          onClose={closeUpdater}
+          pillar={pillar}
+          name={label}
+          current_value={target}
+          updateFunc={updateTaskValue}
+        />
       </>
     );
   };

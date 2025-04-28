@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh; /* Full screen height */
-  background: #FFF5E1; /* Soft peachy background */
+  background: var(--container-background-color); /* Soft peachy background */
 }
 
 /* 🔹 Content Section (Takes Available Space) */

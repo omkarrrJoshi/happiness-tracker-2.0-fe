@@ -49,7 +49,7 @@ const Spiritual: React.FC = () => {
   ];
   
   return (
-    <div className="spiritual-container">
+    <div className="spiritual-container spiritual-theme">
       <WebHeader title="Spiritual" />
       
       {/* Toggle Views */}

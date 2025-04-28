@@ -38,7 +38,7 @@ const Mental: React.FC = () => {
   ];
   
   return (
-    <div className="spiritual-container">
+    <div className="spiritual-container mental-theme">
       <WebHeader title="Mental" />
       
       {/* Toggle Views */}

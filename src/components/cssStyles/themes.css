@@ -19,7 +19,9 @@
   --deleted-content-bg-color: #f9e3ad;
   --deleted-content-text-color: #888888;
 
-  --big-border-color: #E76F51
+  --big-border-color: #E76F51;
+
+  --container-background-color: #FFF5E1;
 }
 
 
@@ -31,6 +33,8 @@
   --secondary-text-color: #34495E; /* Deep grey-blue for secondary text */
   --deleted-content-bg-color: #D6E6F2;
   --deleted-content-text-color: #888888; /* Slightly softened grey */
+
   --big-border-color: #4A90E2; /* Calm medium blue for borders */
+  --container-background-color: #EDF4FA
 }
 

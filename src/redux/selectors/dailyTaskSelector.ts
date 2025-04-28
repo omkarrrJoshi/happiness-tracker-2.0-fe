@@ -1,4 +1,4 @@
-import { NAMASMARAN, SHLOKA } from "../../constants/constants";
+import { ACTIVITY, NAMASMARAN, SHLOKA } from "../../constants/constants";
 import { DailyTask } from "../../types/models/dailyTask";
 import { AppState, DailyTaskState } from "../../types/stateTypes";
 
@@ -38,12 +38,31 @@ export const getNamasmaranMessage = (state: AppState): string | null => {
   return getDailyTaskReducer(state).namasmaran.message;
 }
 
+export const getActivityData = (state: AppState): DailyTask[] => {
+  return getDailyTaskReducer(state).activity.data;
+}
+
+export const getActivityLoading = (state: AppState): boolean => {
+  return getDailyTaskReducer(state).activity.loading;
+}
+
+export const getActivityError = (state: AppState): string | null => {
+  return getDailyTaskReducer(state).activity.errors;
+}
+
+export const getActivityMessage = (state: AppState): string | null => {
+  return getDailyTaskReducer(state).activity.message;
+}
+
 export const getDailyTaskByRefId = (state: AppState, id: string | undefined, type: string | undefined): DailyTask | undefined => {
   if(type === SHLOKA){
     return getShlokaData(state).find(task => task.daily_task_ref_id === id);
   }
   else if(type === NAMASMARAN){
     return getNamasmaranData(state).find(task => task.daily_task_ref_id === id);
+  }
+  else if(type === ACTIVITY){
+    return getActivityData(state).find(task => task.daily_task_ref_id === id);
   }
   return undefined;
 }

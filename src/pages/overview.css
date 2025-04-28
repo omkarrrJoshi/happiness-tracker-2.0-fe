@@ -1,0 +1,49 @@
+.overview-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+}
+
+.overview-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.pillars-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.pillar-card {
+  padding: 20px;
+  border-radius: 12px;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+  background-color: var(--primary-bg-color);
+}
+
+.pillar-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Make it responsive (optional) */
+@media (min-width: 600px) {
+  .pillars-list {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .pillar-card {
+    width: 45%;
+  }
+}

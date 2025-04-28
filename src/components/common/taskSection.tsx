@@ -1,20 +1,21 @@
 import React from "react";
-import ExpandableComponent from "./collapsibleComponent";
+import CollapsibleComponent from "./collapsibleComponent";
 import DailyTasksProgressContainer from "../internal/dailyTasksProgressContainer";
 import Loader from "./loader";
+import { DailyTask } from "../../types/models/dailyTask";
 
 interface TaskSectionProps {
   label: string;
   isLoading: boolean;
-  tasks: any[];
+  tasks: DailyTask[];
   pillar: string;
   type: string;
-  FormComponent: React.FC<{ isOpen: boolean; onClose: () => void; type: string }>; // Pass any form component
+  FormComponent: React.FC<{ isOpen: boolean; onClose: () => void; pillar: string; type: string }>; // Pass any form component
 }
 
 const TaskSection: React.FC<TaskSectionProps> = ({ label, isLoading, tasks, pillar, type, FormComponent  }) => {
   return (
-    <ExpandableComponent label={label} FormComponent={FormComponent} type={type}> 
+    <CollapsibleComponent label={label} FormComponent={FormComponent} pillar={pillar} type={type}> 
       {isLoading && (
         <Loader /> // ✅ Show loading state
       ) }
@@ -23,7 +24,7 @@ const TaskSection: React.FC<TaskSectionProps> = ({ label, isLoading, tasks, pill
       ) : (
         <p>No {label.toLowerCase()} available</p>
       )}
-    </ExpandableComponent>
+    </CollapsibleComponent>
   );
 };
 

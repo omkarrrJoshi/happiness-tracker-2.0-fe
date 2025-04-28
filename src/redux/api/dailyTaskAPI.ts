@@ -1,10 +1,11 @@
 import { CREATE_DAILY_TASK, FETCH_DAILY_TASKS, FETCH_DAILY_TASKTRACKER, GET, POST, PUT, UPDATE_DAILY_TASK_PROGRESS, UPDATE_DAILY_TASK_REF } from "../../constants/apis";
+import { DailyTaskType } from "../../constants/types";
 import ApiResponse from "../../types/apiResponse";
 import { CreateDailyTaskPayload, FetchDailyTasTrackerRequest, UpdateDailyTaskProgressRequest, UpdateDailyTaskRefRequest } from "../../types/models/dailyTask";
 import { apiClient } from "../../utils/utils";
 
 
-export const fetchDailyTask = async (userId:string, date: string, type: "shloka" | "namasmaran"): Promise<ApiResponse> => {
+export const fetchDailyTask = async (userId:string, date: string, type: DailyTaskType): Promise<ApiResponse> => {
   const queryParams = new Map<string, string>();
   queryParams.set("date", date);
   queryParams.set("type", type);

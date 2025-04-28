@@ -107,17 +107,17 @@ import ProgressOrTargetUpdater from "../internal/progressOrTargetUpdater";
 
     const completed = target !== 0 && progress >= target;
 
-    const DEFAULT_CLASS_NAME = target === 0 ? `deleted-task-progress-container-${pillar}` : `task-progress-container-${pillar}`;
+    const DEFAULT_CLASS_NAME = target === 0 ? `deleted-task-progress-container` : `task-progress-container`;
 
     return (
       <>
-        <div className={DEFAULT_CLASS_NAME}>
+        <div className={`${DEFAULT_CLASS_NAME} ${pillar}-theme`}>
           <div className="col-1">
             {completed && (
               <img src="/svg-icons/task-completed.svg" alt="completed" />
             )}
           </div>
-          <div className="col-6" onClick={() => navigate(`/spiritual/${type}/${task_ref_id}`)}>
+          <div className="col-6" onClick={() => navigate(`/${pillar}/${type}/${task_ref_id}`)}>
               {label}
           </div>
           <div className="col-3"> {/* ✅ Click to open updater */}

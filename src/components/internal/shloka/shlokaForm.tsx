@@ -11,9 +11,10 @@ interface ShlokaFormProps {
   onClose: () => void;
   type: string; // ✅ Accept type as a prop
   initialData?: Record<string, any>; // ✅ Optional initialData for update
+  pillar: string
 }
 
-const ShlokaForm: React.FC<ShlokaFormProps> = ({ isOpen, onClose, type, initialData }) => {
+const ShlokaForm: React.FC<ShlokaFormProps> = ({ isOpen, onClose, type, initialData, pillar }) => {
   const selectedDate = useSelector(getSelectedDate);
   const userId = useSelector(getUserId);
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const ShlokaForm: React.FC<ShlokaFormProps> = ({ isOpen, onClose, type, initialD
     const payloadData = {
       user_id: userId,
       type,
-      pillar: "spiritual",
+      pillar: pillar,
       target: Array.isArray(data.target) ? data.target : Array(7).fill(data.target || 1), // ✅ Ensure target is an array
       name: data.name.trim(),
       link: data.link || undefined,

@@ -1,0 +1,36 @@
+:root {
+  /* Default fallback values */
+  --primary-bg-color: #EFB960;
+  --primary-text-color: #4A3629;
+  --secondary-bg-color: #f9e3ad;
+  --secondary-text-color: #7D4B21;
+  --deleted-content-bg-color: #f9e3ad;
+  --deleted-content-text-color: #888888;
+
+  --big-border-color: #888888
+}
+
+/* Spiritual Pillar Theme */
+.spiritual-theme {
+  --primary-bg-color: #EFB960; /* Warm golden color */
+  --primary-text-color: #4A3629; /* Deep brown for readability */
+  --secondary-bg-color: #f9e3ad; /* Soft creamy background */
+  --secondary-text-color: #7D4B21; /* Rich warm brown */
+  --deleted-content-bg-color: #f9e3ad;
+  --deleted-content-text-color: #888888;
+
+  --big-border-color: #E76F51
+}
+
+
+/* Mental Pillar Theme */
+.mental-theme {
+  --primary-bg-color: #6DA9E4; /* Soft blue background */
+  --primary-text-color: #2C3E50; /* Dark slate grey (almost black with a hint of blue) */
+  --secondary-bg-color: #D6E6F2; /* Light creamy blue */
+  --secondary-text-color: #34495E; /* Deep grey-blue for secondary text */
+  --deleted-content-bg-color: #D6E6F2;
+  --deleted-content-text-color: #888888; /* Slightly softened grey */
+  --big-border-color: #4A90E2; /* Calm medium blue for borders */
+}
+

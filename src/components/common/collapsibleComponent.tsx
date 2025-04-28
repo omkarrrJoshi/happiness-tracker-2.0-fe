@@ -3,17 +3,19 @@ import { motion } from "framer-motion";
 
 import "./collapsibleComponent.css";
 
-interface ExpandableComponentProps {
+interface CollapsibleComponentProps {
   label: string;
   children: React.ReactNode;
-  FormComponent: React.FC<{ isOpen: boolean; onClose: () => void; type: string }>; // Pass any form component
+  FormComponent: React.FC<{ isOpen: boolean; onClose: () => void; pillar: string; type: string }>; // Pass any form component
+  pillar: string;
   type: string;
 }
 
-const ExpandableComponent: React.FC<ExpandableComponentProps> = ({
+const CollapsibleComponent: React.FC<CollapsibleComponentProps> = ({
   label,
   children,
   FormComponent,
+  pillar,
   type
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -28,10 +30,10 @@ const ExpandableComponent: React.FC<ExpandableComponentProps> = ({
     setIsFormOpen(true);
   };
 
-  const DEFAULT_CLASS_NAME = "collapsible-component";
+  const DEFAULT_CLASS_NAME = `collapsible-component`;
 
   return (
-    <div className={DEFAULT_CLASS_NAME}>
+    <div className={`${DEFAULT_CLASS_NAME} ${pillar}-theme`}>
       {/* Collapsible Header */}
       <div className={`${DEFAULT_CLASS_NAME}-header`} onClick={toggleCollapse}>
         <span className="col-2">
@@ -58,9 +60,9 @@ const ExpandableComponent: React.FC<ExpandableComponentProps> = ({
       </motion.div>
 
       {/* Render Form if Open */}
-      {isFormOpen && <FormComponent isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} type={type} />}
+      {isFormOpen && <FormComponent isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} pillar={pillar} type={type} />}
     </div>
   );
 };
 
-export default ExpandableComponent;
+export default CollapsibleComponent;

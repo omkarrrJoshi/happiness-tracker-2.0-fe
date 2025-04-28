@@ -2,25 +2,27 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { DailyTaskState } from "../../types/stateTypes";
 import { DailyTask } from "../../types/models/dailyTask";
 import { showImageNotification } from "../../utils/notification";
+import { DailyTaskType } from "../../constants/types";
 
 
 const initialState: DailyTaskState = {
   shloka: { data: [], loading: false, errors: null, message: null },
   namasmaran: { data: [], loading: false, errors: null, message: null },
+  activity: { data: [], loading: false, errors: null, message: null }
 };
 
 const dailyTaskSlice = createSlice({
   name: "dailyTask",
   initialState,
   reducers: {
-    fetchDailyTaskRequest: (state, action: PayloadAction<{ type: "shloka" | "namasmaran" }>) => {
+    fetchDailyTaskRequest: (state, action: PayloadAction<{ type: DailyTaskType }>) => {
       state[action.payload.type].loading = true;
       state[action.payload.type].errors = null;
       state[action.payload.type].message = null;
     },
     fetchDailyTaskSuccess: (
       state,
-      action: PayloadAction<{ type: "shloka" | "namasmaran"; data: DailyTask[]; message: string }>
+      action: PayloadAction<{ type: DailyTaskType; data: DailyTask[]; message: string }>
     ) => {
       state[action.payload.type].loading = false;
       state[action.payload.type].data = action.payload.data;
@@ -28,21 +30,21 @@ const dailyTaskSlice = createSlice({
     },
     fetchDailyTaskFailure: (
       state,
-      action: PayloadAction<{ type: "shloka" | "namasmaran"; errors: any; message: string }>
+      action: PayloadAction<{ type: DailyTaskType; errors: any; message: string }>
     ) => {
       state[action.payload.type].loading = false;
       state[action.payload.type].errors = action.payload.errors;
       state[action.payload.type].message = action.payload.message;
     },
     //create
-    createDailyTaskRequest: (state, action: PayloadAction<{ type: "shloka" | "namasmaran" }>) => {
+    createDailyTaskRequest: (state, action: PayloadAction<{ type: DailyTaskType }>) => {
       state[action.payload.type].loading = true;
       state[action.payload.type].errors = null;
       state[action.payload.type].message = null;
     },
     createDailyTaskSuccess: (
       state,
-      action: PayloadAction<{ type: "shloka" | "namasmaran"; data: DailyTask; message: string }>
+      action: PayloadAction<{ type: DailyTaskType; data: DailyTask; message: string }>
     ) => {
       state[action.payload.type].loading = false;
       state[action.payload.type].data.push(action.payload.data);
@@ -50,21 +52,21 @@ const dailyTaskSlice = createSlice({
     },
     createDailyTaskFailure: (
       state,
-      action: PayloadAction<{ type: "shloka" | "namasmaran"; errors: any; message: string }>
+      action: PayloadAction<{ type: DailyTaskType; errors: any; message: string }>
     ) => {
       state[action.payload.type].loading = false;
       state[action.payload.type].errors = action.payload.errors;
       state[action.payload.type].message = action.payload.message;
     },
     //update progress
-    updateDailyTaskProgressRequest: (state, action: PayloadAction<{ type: "shloka" | "namasmaran" }>) => {
+    updateDailyTaskProgressRequest: (state, action: PayloadAction<{ type: DailyTaskType }>) => {
       state[action.payload.type].loading = true;
       state[action.payload.type].errors = null;
       state[action.payload.type].message = null;
     },
     updateDailyTaskProgressSuccess: (
       state,
-      action: PayloadAction<{ type: "shloka" | "namasmaran"; data: DailyTask; message: string }>
+      action: PayloadAction<{ type: DailyTaskType; data: DailyTask; message: string }>
     ) => {
       state[action.payload.type].loading = false;
 
@@ -97,7 +99,7 @@ const dailyTaskSlice = createSlice({
     },
     updateDailyTaskProgressFailure: (
       state,
-      action: PayloadAction<{ type: "shloka" | "namasmaran"; errors: any; message: string }>
+      action: PayloadAction<{ type: DailyTaskType; errors: any; message: string }>
     ) => {
       state[action.payload.type].loading = false;
       state[action.payload.type].errors = action.payload.errors;
@@ -105,14 +107,14 @@ const dailyTaskSlice = createSlice({
     },
 
     //update ref
-    updateDailyTaskRefRequest: (state, action: PayloadAction<{ type: "shloka" | "namasmaran" }>) => {
+    updateDailyTaskRefRequest: (state, action: PayloadAction<{ type: DailyTaskType }>) => {
       state[action.payload.type].loading = true;
       state[action.payload.type].errors = null;
       state[action.payload.type].message = null;
     },
     updateDailyTaskRefSuccess: (
       state,
-      action: PayloadAction<{ type: "shloka" | "namasmaran"; data: DailyTask; message: string }>
+      action: PayloadAction<{ type: DailyTaskType; data: DailyTask; message: string }>
     ) => {
       state[action.payload.type].loading = false;
       const data = action.payload.data
@@ -137,7 +139,7 @@ const dailyTaskSlice = createSlice({
     },
     updateDailyTaskRefFailure: (
       state,
-      action: PayloadAction<{ type: "shloka" | "namasmaran"; errors: any; message: string }>
+      action: PayloadAction<{ type: DailyTaskType; errors: any; message: string }>
     ) => {
       state[action.payload.type].loading = false;
       state[action.payload.type].errors = action.payload.errors;

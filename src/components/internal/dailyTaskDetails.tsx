@@ -14,6 +14,7 @@ interface DailyTaskDetailsProps {
   start_date: string;
   end_date: string | null;
   target: number[];
+  pillar: string;
   type: string;
 }
 
@@ -28,6 +29,7 @@ const DailyTaskDetails: React.FC<DailyTaskDetailsProps> = ({
   start_date,
   end_date,
   target,
+  pillar,
   type
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -36,6 +38,7 @@ const DailyTaskDetails: React.FC<DailyTaskDetailsProps> = ({
 
   const DEFAULT_CLASS_NAME = "daily-task-details";
 
+  console.log("name:", name)
   return (
     <div className={DEFAULT_CLASS_NAME}>
       <h3 className={`${DEFAULT_CLASS_NAME}__title`}>{name}</h3>
@@ -75,6 +78,7 @@ const DailyTaskDetails: React.FC<DailyTaskDetailsProps> = ({
         <ShlokaForm
           isOpen={isEditOpen}
           onClose={() => setIsEditOpen(false)}
+          pillar={pillar}
           type={type}
           initialData={{
             id: task_ref_id,

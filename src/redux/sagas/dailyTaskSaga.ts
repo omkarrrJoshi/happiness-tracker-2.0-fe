@@ -20,11 +20,12 @@ import ApiResponse from "../../types/apiResponse";
 import { CreateDailyTaskPayload, FetchDailyTasTrackerRequest, UpdateDailyTaskProgressRequest, UpdateDailyTaskRefRequest } from "../../types/models/dailyTask";
 import { showNotification } from "../../utils/notification";
 import { fetchDailyTaskTrackerFailure, fetchDailyTaskTrackerRequest, fetchDailyTaskTrackerSuccess } from "../slices/dailyTaskTrackerSlice";
+import { DailyTaskType } from "../../constants/types";
 
 interface FetchDailyTaskPayload {
   user_id: string,
   date: string;
-  type: "shloka" | "namasmaran";
+  type: DailyTaskType;
 }
 
 function* handleFetchDailyTask(action: PayloadAction<FetchDailyTaskPayload>): Generator<Effect, void, any> {  
@@ -45,7 +46,7 @@ function* handleFetchDailyTask(action: PayloadAction<FetchDailyTaskPayload>): Ge
 }
 
 function* handleCreateDailyTask(action: PayloadAction<CreateDailyTaskPayload>): Generator<Effect, void, any> {
-  const type = action.payload.type as "shloka" | "namasmaran";  
+  const type = action.payload.type as DailyTaskType;  
   const userId = action.payload.user_id; 
   try {
     yield put(createDailyTaskRequest( {type} ));
@@ -64,7 +65,7 @@ function* handleCreateDailyTask(action: PayloadAction<CreateDailyTaskPayload>): 
 }
 
 function* handleUpdateDailyTaskProgress(action: PayloadAction<UpdateDailyTaskProgressRequest>): Generator<Effect, void, any> {
-  const type = action.payload.type as "shloka" | "namasmaran"; 
+  const type = action.payload.type as DailyTaskType; 
   const user_id = action.payload.user_id;  
   try {
     yield put(updateDailyTaskProgressRequest( {type} ));
@@ -83,7 +84,7 @@ function* handleUpdateDailyTaskProgress(action: PayloadAction<UpdateDailyTaskPro
 }
 
 function* handleUpdateDailyTaskRef(action: PayloadAction<UpdateDailyTaskRefRequest>): Generator<Effect, void, any> {
-  const type = action.payload.type as "shloka" | "namasmaran"; 
+  const type = action.payload.type as DailyTaskType; 
   try {
     yield put(updateDailyTaskRefRequest( {type} ));
 
@@ -102,7 +103,7 @@ function* handleUpdateDailyTaskRef(action: PayloadAction<UpdateDailyTaskRefReque
 
 
 function* handleFetchDailyTaskTracker(action: PayloadAction<FetchDailyTasTrackerRequest>): Generator<Effect, void, any> {
-  const type = action.payload.type as "shloka" | "namasmaran"; ;
+  const type = action.payload.type as DailyTaskType; ;
   const user_id = action.payload.user_id; 
 
   try {

@@ -1,5 +1,4 @@
 import TaskProgressContainer, { ProgressContainerProps } from "./taskProgressContainer";
-import './taskProgressContainerHolder.css'
 
 export interface TaskProgrerssContainerHolderProps{
   pillar: string,
@@ -10,7 +9,7 @@ const TaskProgrerssContainerHolder: React.FC<TaskProgrerssContainerHolderProps> 
   pillar,
   tasks
 }) => {
-  const DEFAULT_CLASS_NAME = `task-progress-container-holder-${pillar}`
+  const DEFAULT_CLASS_NAME = `task-progress-container-holder`
   return (
     <div className={DEFAULT_CLASS_NAME}>
       {

@@ -1,8 +1,7 @@
 .collapsible-component {
   margin: 10px 5px;
-  border: 1px solid #E76F51; /* Burnt orange border */
+  border: 1px solid var(--big-border-color); /* Burnt orange border */
   border-radius: 5px;
-  
 }
 
 /* Header (Collapsible Title Bar) */
@@ -11,9 +10,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 12px;
-  background: #EFB960; /* Warm golden color */
+  background: var(--primary-bg-color);
   cursor: pointer;
-  color: #4A3629; /* Deep brown for readability */
+  color: var(--primary-text-color);
   font-weight: bold;
   border-radius: 5px;
   touch-action: manipulation; /* Optimized for mobile */

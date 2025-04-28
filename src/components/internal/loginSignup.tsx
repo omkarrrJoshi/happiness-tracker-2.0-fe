@@ -38,9 +38,11 @@ const login = async (email: string, password: string) => {
 
   const signup = async (email: string, password: string) => {
     try {
+      console.log(`email: ${email} pass: ${password}`)
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(userCredential)
       const user = userCredential.user;
-    
+      console.log(user)
       dispatch(setUser(user)); // ✅ Store new user in Redux
     } catch (error) {
       console.error("Signup failed:");

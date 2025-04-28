@@ -15,7 +15,7 @@ const DailyTasksProgressContainer: React.FC<DailyTasksProgressContainerProps> = 
   pillar,
   type
 }) => {
-  const DEFAULT_CLASS_NAME = `daily-tasks-progress-container-${pillar}-${type}`
+  const DEFAULT_CLASS_NAME = `daily-tasks-progress-container`
 
   const convertToTask = (tasks: DailyTask[]): ProgressContainerProps[] => {
     const incompleteTasks = tasks.filter(task => task.daily_target !== 0 && task.daily_progress < task.daily_target);

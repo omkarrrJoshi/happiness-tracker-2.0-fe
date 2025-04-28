@@ -18,7 +18,7 @@ const DailyTaskDetailsHolder: React.FC = () => {
     <div>
       <WebHeader title="Happiness Tracker" />
       <DailyTaskDetails 
-      task_ref_id={dailyTask.daily_task_ref_id}
+        task_ref_id={dailyTask.daily_task_ref_id}
         image_url={dailyTask.image_url}
         name={dailyTask.name}
         description={dailyTask.description}
@@ -28,6 +28,7 @@ const DailyTaskDetailsHolder: React.FC = () => {
         start_date={formatDateForDatePicker(dailyTask.start_date)}
         end_date={formatDateForDatePicker(dailyTask.end_date)}
         target={dailyTask.target}
+        pillar={dailyTask.pillar}
         type={dailyTask.type}
       />
     </div>

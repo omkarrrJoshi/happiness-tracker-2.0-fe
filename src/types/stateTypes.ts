@@ -12,6 +12,7 @@ export interface TaskState {
 export interface DailyTaskState {
   shloka: TaskState;
   namasmaran: TaskState;
+  activity: TaskState;
 }
 
 export interface DateState{
@@ -37,6 +38,7 @@ export interface DailyTaskTrackerState{
 export interface DailyTasksTrackerState {
   shloka: DailyTaskTrackerState;
   namasmaran: DailyTaskTrackerState
+  activity: DailyTaskTrackerState
 }
 
 export interface AppState{

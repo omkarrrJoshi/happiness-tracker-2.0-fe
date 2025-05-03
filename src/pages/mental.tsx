@@ -7,9 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSelectedDate } from "../redux/selectors/dateSelector";
 import { getUserId } from "../redux/selectors/userSelector";
 import { FETCH_DAILY_TASKS_REQUEST } from "../redux/actions/action_keys";
-import { ACTIVITY, MENTAL } from "../constants/constants";
+import { ACTIVITY, BOOK, MENTAL, PRANAYAMA } from "../constants/constants";
 import ShlokaForm from "../components/internal/shloka/shlokaForm";
-import { getActivityData, getActivityLoading } from "../redux/selectors/dailyTaskSelector";
+import { getActivityData, getActivityLoading, getBookData, getBookLoading, getPranayamaData, getPranayamaLoading } from "../redux/selectors/dailyTaskSelector";
 
 const Mental: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"progress" | "tracker">("progress");
@@ -20,6 +20,12 @@ const Mental: React.FC = () => {
 
   const activitiesData = useSelector(getActivityData);
   const activitiesLoading = useSelector(getActivityLoading);
+
+  const pranayamaData = useSelector(getPranayamaData);
+  const pranayamaLoading = useSelector(getPranayamaLoading);
+
+  const booksData = useSelector(getBookData);
+  const booksLoading = useSelector(getBookLoading);
 
   // ✅ Dispatch Redux actions once on mount
   useEffect(() => {
@@ -33,6 +39,22 @@ const Mental: React.FC = () => {
       tasks: activitiesData,
       pillar: MENTAL,
       type: ACTIVITY,
+      FormComponent: ShlokaForm
+    },
+    {
+      label: "Pranayama",
+      isLoading: pranayamaLoading,
+      tasks: pranayamaData,
+      pillar: MENTAL,
+      type: PRANAYAMA,
+      FormComponent: ShlokaForm
+    },
+    {
+      label: "Book Reading",
+      isLoading: booksLoading,
+      tasks: booksData,
+      pillar: MENTAL,
+      type: BOOK,
       FormComponent: ShlokaForm
     }
   ];

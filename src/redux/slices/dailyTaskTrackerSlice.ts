@@ -7,6 +7,8 @@ const initialState: DailyTasksTrackerState = {
   shloka: { data: {total_progress: 0, total_target: 0}, loading: false, errors: null, message: null },
   namasmaran: { data: {total_progress: 0, total_target: 0}, loading: false, errors: null, message: null },
   activity: { data: {total_progress: 0, total_target: 0}, loading: false, errors: null, message: null },
+  book: { data: {total_progress: 0, total_target: 0}, loading: false, errors: null, message: null },
+  pranayama: { data: {total_progress: 0, total_target: 0}, loading: false, errors: null, message: null },
 }
 
 const dailyTasksTrackerSlice = createSlice({

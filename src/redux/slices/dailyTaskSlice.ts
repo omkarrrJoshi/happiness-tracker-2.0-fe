@@ -8,7 +8,9 @@ import { DailyTaskType } from "../../constants/types";
 const initialState: DailyTaskState = {
   shloka: { data: [], loading: false, errors: null, message: null },
   namasmaran: { data: [], loading: false, errors: null, message: null },
-  activity: { data: [], loading: false, errors: null, message: null }
+  activity: { data: [], loading: false, errors: null, message: null },
+  book: { data: [], loading: false, errors: null, message: null },
+  pranayama: { data: [], loading: false, errors: null, message: null },
 };
 
 const dailyTaskSlice = createSlice({

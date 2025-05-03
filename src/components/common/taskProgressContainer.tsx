@@ -113,9 +113,13 @@ import ProgressOrTargetUpdater from "../internal/progressOrTargetUpdater";
       <>
         <div className={`${DEFAULT_CLASS_NAME} ${pillar}-theme`}>
           <div className="col-1">
-            {completed && (
+            {completed ? (
               <img src="/svg-icons/task-completed.svg" alt="completed" />
-            )}
+            ):
+            (
+              <input type="checkbox" onChange={() =>updateTaskValue({daily_progress: target})}></input>
+            )
+            }
           </div>
           <div className="col-6" onClick={() => navigate(`/${pillar}/${type}/${task_ref_id}`)}>
               {label}

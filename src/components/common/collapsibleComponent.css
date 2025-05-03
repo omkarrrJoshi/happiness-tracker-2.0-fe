@@ -27,7 +27,7 @@
 /* Content Background */
 .collapsible-component-content {
   transition: height 0.3s ease-in-out;
-  background-color: #faf3e3; /* Soft cream for inner content */
+  /* background-color: #faf3e3; Soft cream for inner content */
 }
 
 .collapsible-inner-content {

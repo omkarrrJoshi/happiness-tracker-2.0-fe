@@ -85,3 +85,21 @@
   font-weight: 500;
   text-align: center;
 }
+
+
+/* Style the checkbox input */
+.task-progress-container input[type="checkbox"] {
+  appearance: none; /* Hide native checkbox */
+  -webkit-appearance: none;
+  background-color: #ffffff;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--primary-text-color);
+  border-radius: 4px;
+  place-content: center;
+  cursor: pointer;
+}
+

@@ -54,6 +54,38 @@ export const getActivityMessage = (state: AppState): string | null => {
   return getDailyTaskReducer(state).activity.message;
 }
 
+export const getPranayamaData = (state: AppState): DailyTask[] => {
+  return getDailyTaskReducer(state).pranayama.data;
+}
+
+export const getPranayamaLoading = (state: AppState): boolean => {
+  return getDailyTaskReducer(state).pranayama.loading;
+}
+
+export const getPranayamaError = (state: AppState): string | null => {
+  return getDailyTaskReducer(state).pranayama.errors;
+}
+
+export const getPranayamaMessage = (state: AppState): string | null => {
+  return getDailyTaskReducer(state).pranayama.message;
+}
+
+
+export const getBookData = (state: AppState): DailyTask[] => {
+  return getDailyTaskReducer(state).book.data;
+}
+
+export const getBookLoading = (state: AppState): boolean => {
+  return getDailyTaskReducer(state).book.loading;
+}
+
+export const getBookError = (state: AppState): string | null => {
+  return getDailyTaskReducer(state).book.errors;
+}
+
+export const getBookMessage = (state: AppState): string | null => {
+  return getDailyTaskReducer(state).book.message;
+}
 export const getDailyTaskByRefId = (state: AppState, id: string | undefined, type: string | undefined): DailyTask | undefined => {
   if(type === SHLOKA){
     return getShlokaData(state).find(task => task.daily_task_ref_id === id);

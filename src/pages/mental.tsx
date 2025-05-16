@@ -30,6 +30,8 @@ const Mental: React.FC = () => {
   // ✅ Dispatch Redux actions once on mount
   useEffect(() => {
     dispatch({ type: FETCH_DAILY_TASKS_REQUEST, payload: { user_id: user_id, date: selectedDate, type: ACTIVITY } });
+    dispatch({ type: FETCH_DAILY_TASKS_REQUEST, payload: { user_id: user_id, date: selectedDate, type: PRANAYAMA } });
+    dispatch({ type: FETCH_DAILY_TASKS_REQUEST, payload: { user_id: user_id, date: selectedDate, type: BOOK } });
   }, [dispatch, selectedDate, user_id]);
 
   const sections = [

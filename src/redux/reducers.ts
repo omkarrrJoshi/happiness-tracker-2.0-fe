@@ -1,14 +1,12 @@
-import { combineReducers } from "@reduxjs/toolkit";
 import dailyTaskReducer from "./slices/dailyTaskSlice";
 import dateReducer from "./slices/dateSlice"
 import authReducer from "./slices/authSlice"
 import dailyTasksTrackerReducer from "./slices/dailyTaskTrackerSlice"
 
-const rootReducer = combineReducers({
+export const reducers = {
   dailyTask: dailyTaskReducer,
   date: dateReducer,
   auth: authReducer,
   dailyTasksTracker: dailyTasksTrackerReducer,
-});
-
-export default rootReducer;
+};
+export default reducers;

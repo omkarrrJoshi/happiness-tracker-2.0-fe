@@ -34,7 +34,7 @@ const CounterBox: React.FC<CounterBoxProps> = ({ progress, updateProgress, enabl
           -
         </button>
         <div
-          className={`${DEFAULT_CLASS_NAME}-small-box ${enable ? "active" : "disabled"}`}
+          className={`${DEFAULT_CLASS_NAME}-small-box ${true ? "active" : "disabled"}`}
           onClick={openUpdater}
         >
           {progress}
@@ -53,6 +53,7 @@ const CounterBox: React.FC<CounterBoxProps> = ({ progress, updateProgress, enabl
         name={label}
         current_value={progress}
         updateFunc={updateProgress}
+        enable={enable}
       />
     </div>
   );

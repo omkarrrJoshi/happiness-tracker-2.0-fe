@@ -12,6 +12,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import DailyTaskDetailsHolder from "./pages/dailyTaskDetailsHolder";
 import Mental from "./pages/mental";
 import Overview from "./pages/overview";
+import ChapterProgressHolder from "./pages/chapterProgressHolder";
 
 const App: React.FC = () => {
   const [authLoading, setAuthLoading] = useState(true); // ✅ Track loading state
@@ -37,6 +38,7 @@ const App: React.FC = () => {
           <Route path="/spiritual" element={user ? <Spiritual /> : <Navigate to="/" />} />
           <Route path="/mental" element={user ? <Mental /> : <Navigate to="/" />} />
           <Route path="/:pillar/:type/:task_ref_id" element={user ? <DailyTaskDetailsHolder /> : <Navigate to="/" />}  />
+          <Route path="/:pillar/:type/:task_ref_id/chapter-progress" element={user ? <ChapterProgressHolder /> : <Navigate to="/" />}  />
         </Routes>
       )}
     </Router>

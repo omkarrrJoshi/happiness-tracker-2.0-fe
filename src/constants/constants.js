@@ -6,3 +6,7 @@ export const NAMASMARAN = "namasmaran"
 export const ACTIVITY = "activity"
 export const PRANAYAMA = "pranayama"
 export const BOOK = "book"
+export const PARAYANAS = "parayanas"
+export const MONTHLY_ACTIVITY = "monthly_activitiy"
+
+export const MONTHLY_TASK_TYPES = [PARAYANAS, MONTHLY_ACTIVITY]

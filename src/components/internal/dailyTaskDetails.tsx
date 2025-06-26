@@ -80,6 +80,7 @@ const DailyTaskDetails: React.FC<DailyTaskDetailsProps> = ({
           onClose={() => setIsEditOpen(false)}
           pillar={pillar}
           type={type}
+          taskType="daily"
           initialData={{
             id: task_ref_id,
             name,

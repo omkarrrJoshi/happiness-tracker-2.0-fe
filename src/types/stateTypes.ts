@@ -49,5 +49,6 @@ export interface AppState{
   dailyTask: DailyTaskState;
   date: DateState;
   auth: AuthState;
-  dailyTasksTracker: DailyTasksTrackerState
+  dailyTasksTracker: DailyTasksTrackerState;
+  api: any; // RTK Query state
 }

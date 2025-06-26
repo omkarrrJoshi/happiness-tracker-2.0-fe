@@ -6,9 +6,10 @@ import "./collapsibleComponent.css";
 interface CollapsibleComponentProps {
   label: string;
   children: React.ReactNode;
-  FormComponent: React.FC<{ isOpen: boolean; onClose: () => void; pillar: string; type: string }>; // Pass any form component
+  FormComponent: React.FC<{ isOpen: boolean; onClose: () => void; pillar: string; type: string; taskType: string }>; // Pass any form component
   pillar: string;
   type: string;
+  taskType: string;
 }
 
 const CollapsibleComponent: React.FC<CollapsibleComponentProps> = ({
@@ -16,7 +17,8 @@ const CollapsibleComponent: React.FC<CollapsibleComponentProps> = ({
   children,
   FormComponent,
   pillar,
-  type
+  type,
+  taskType
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -60,7 +62,7 @@ const CollapsibleComponent: React.FC<CollapsibleComponentProps> = ({
       </motion.div>
 
       {/* Render Form if Open */}
-      {isFormOpen && <FormComponent isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} pillar={pillar} type={type} />}
+      {isFormOpen && <FormComponent isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} pillar={pillar} type={type} taskType={taskType} />}
     </div>
   );
 };

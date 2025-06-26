@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import './progressOrTargetUpdater.css'
+import { showNotification } from "../../utils/notification";
 interface ProgressUpdaterProps {
   toUpdate: "progress" | "target";
   isOpen: boolean;
@@ -9,6 +10,7 @@ interface ProgressUpdaterProps {
   name: string;
   current_value: number;
   updateFunc: (update: Partial<{ daily_progress: number; daily_target: number }>) => void
+  enable: boolean;
 }
 
 const ProgressOrTargetUpdater: React.FC<ProgressUpdaterProps> = (
@@ -19,12 +21,19 @@ const ProgressOrTargetUpdater: React.FC<ProgressUpdaterProps> = (
     pillar, 
     name, 
     current_value, 
-    updateFunc 
+    updateFunc,
+    enable
   }) => {
   const [updated_value, setProgress] = useState<string>("");
   if (!isOpen) return null;
 
   const DEFAULT_CLASS_NAME = `progress-or-target-updater-${pillar}`;
+
+  if(!enable){
+    showNotification("This task is not updatable, either it is a Monthly task or it's target is 0", "error");
+    onClose();
+    return null;
+  }
 
   return (
     <div className="modal-overlay">

@@ -1,3 +1,4 @@
+import { MONTHLY_TASK_TYPES } from "../constants/constants";
 import ApiResponse from "../types/apiResponse";
 import { userService } from "../types/models/user";
 
@@ -83,4 +84,8 @@ export const apiClient = async (
 export const formatDateForDatePicker = (dateString: string | null) => {
   if (!dateString) return "";
   return new Date(dateString).toISOString().split("T")[0]; // Extracts YYYY-MM-DD
+};
+
+export const isMonthlyTaskType = (type: string) => {
+  return MONTHLY_TASK_TYPES.includes(type);
 };

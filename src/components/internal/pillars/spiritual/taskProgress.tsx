@@ -1,13 +1,15 @@
 import TaskSection from "../../../common/taskSection";
 import { DailyTask } from "../../../../types/models/dailyTask";
+import { MonthlyTaskProgress } from "../../../../types/models/monthlyTask";
 
 interface TaskProgressProp {
   label: string;
   isLoading: boolean;
-  tasks: DailyTask[];
+  tasks: DailyTask[] | MonthlyTaskProgress[];
   pillar: string;
   type: string;
-  FormComponent: React.FC<{ isOpen: boolean; onClose: () => void; pillar: string; type: string }>;
+  FormComponent: React.FC<{ isOpen: boolean; onClose: () => void; pillar: string; type: string; taskType: string }>;
+  taskType: string;
 }
 
 interface TaskProgressProps {
@@ -26,6 +28,7 @@ const TaskProgress: React.FC<TaskProgressProps> = ({ sections }) => {
           pillar={section.pillar}
           type={section.type}
           FormComponent={section.FormComponent}
+          taskType={section.taskType}
         />
       ))}
     </div>

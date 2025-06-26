@@ -10,6 +10,7 @@
 import { useNavigate } from "react-router-dom";
 import { showNotification } from "../../utils/notification";
 import ProgressOrTargetUpdater from "../internal/progressOrTargetUpdater";
+import { isMonthlyTaskType } from "../../utils/utils";
 
   export interface ProgressContainerProps {
     task_ref_id: string;
@@ -109,6 +110,18 @@ import ProgressOrTargetUpdater from "../internal/progressOrTargetUpdater";
 
     const DEFAULT_CLASS_NAME = target === 0 ? `deleted-task-progress-container` : `task-progress-container`;
 
+    const handleNavigation = () => {
+      if(isMonthlyTaskType(type)){
+        console.log("task_progress_id", task_progress_id);
+        navigate(`/${pillar}/${type}/${task_ref_id}/chapter-progress?progress_id=${task_progress_id}`);
+      }
+      else{
+        navigate(`/${pillar}/${type}/${task_ref_id}`);
+      }
+    }
+
+    const isTaskUpdatableFromContainer = !isMonthlyTaskType(type);
+    const readOnly = target === 0 || isMonthlyTaskType(type);
     return (
       <>
         <div className={`${DEFAULT_CLASS_NAME} ${pillar}-theme`}>
@@ -117,18 +130,18 @@ import ProgressOrTargetUpdater from "../internal/progressOrTargetUpdater";
               <img src="/svg-icons/task-completed.svg" alt="completed" />
             ):
             (
-              <input type="checkbox" onChange={() =>updateTaskValue({daily_progress: target})}></input>
+              !readOnly && <input type="checkbox" onChange={() =>updateTaskValue({daily_progress: target})} disabled={readOnly}></input>
             )
             }
           </div>
-          <div className="col-6" onClick={() => navigate(`/${pillar}/${type}/${task_ref_id}`)}>
+          <div className="col-6" onClick={() => handleNavigation()}>
               {label}
           </div>
           <div className="col-3"> {/* ✅ Click to open updater */}
           <CounterBox
               progress={progress} 
               updateProgress={updateTaskValue} 
-              enable={target !== 0} 
+              enable={!readOnly} 
               label={label}
               pillar={pillar}
             />
@@ -148,6 +161,7 @@ import ProgressOrTargetUpdater from "../internal/progressOrTargetUpdater";
           name={label}
           current_value={target}
           updateFunc={updateTaskValue}
+          enable={!readOnly}
         />
       </>
     );

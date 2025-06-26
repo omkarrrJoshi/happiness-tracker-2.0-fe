@@ -1,0 +1,161 @@
+.chapter-progress-container {
+  background: var(--background, #fff);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 24px;
+  margin: 16px 0;
+}
+
+.chapter-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-chapter-btn {
+  background: var(--primary, #4f8cff);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 22px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.add-chapter-btn:hover {
+  background: var(--primary-dark, #3761b3);
+}
+
+.chapter-progress-message {
+  margin-top: 24px;
+  color: var(--danger, #d32f2f);
+  background: #fff0f0;
+  border: 1px solid var(--danger, #d32f2f);
+  border-radius: 6px;
+  padding: 16px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.chapter-modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.chapter-modal {
+  background: #fff;
+  border-radius: 10px;
+  padding: 32px 24px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  min-width: 320px;
+  max-width: 95vw;
+}
+.chapter-input {
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 18px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1.1rem;
+}
+.chapter-modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+.cancel-btn {
+  background: #eee;
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 22px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.cancel-btn:hover {
+  background: #ddd;
+}
+
+/* Iterations and chapters display */
+.iterations-list {
+  margin-top: 24px;
+}
+.iteration-block {
+  margin-bottom: 20px;
+  padding: 16px;
+  border-radius: 8px;
+  background: #f7faff;
+  border: 1px solid #e0e7ef;
+}
+.iteration-block.completed {
+  background: #e6ffe6;
+  border-color: #b2e5b2;
+  opacity: 0.7;
+}
+.chapters-list {
+  margin-top: 10px;
+}
+.chapter-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 8px 0;
+}
+.chapter-checkbox {
+  margin-right: 14px;
+  accent-color: var(--primary, #4f8cff);
+  width: 22px;
+  height: 22px;
+}
+.chapter-name {
+  font-size: 1.1rem;
+  word-break: break-word;
+}
+
+@media (max-width: 600px) {
+  .chapter-progress-container {
+    padding: 10px 2vw;
+    margin: 8px 0;
+    border-radius: 8px;
+  }
+  .chapter-progress-header h2 {
+    font-size: 1.2rem;
+  }
+  .add-chapter-btn, .cancel-btn {
+    font-size: 1rem;
+    padding: 9px 14px;
+    border-radius: 5px;
+  }
+  .chapter-modal {
+    min-width: unset;
+    width: 98vw;
+    max-width: 98vw;
+    padding: 18px 6px;
+    border-radius: 8px;
+  }
+  .chapter-input {
+    font-size: 1rem;
+    padding: 8px 8px;
+  }
+  .iteration-block {
+    padding: 10px 4px;
+    border-radius: 6px;
+  }
+  .chapter-row {
+    margin-bottom: 8px;
+    padding: 6px 0;
+  }
+  .chapter-checkbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  .chapter-name {
+    font-size: 1rem;
+  }
+} 

@@ -14,7 +14,7 @@ interface DynamicFormProps {
   title: string;
   fields: FormField[];
   initialData?: Record<string, any>;
-  onSubmit: (formData: Record<string, any>) => void;
+  onSubmit: (formData: Record<string, any>) => Promise<void>;
   onClose: () => void;
   enableDailyTarget?: boolean;
   enableImageUpload?: boolean;
@@ -107,7 +107,12 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
       target: isDailyTarget ? finalTargets : Array(7).fill(finalTargets[0]),
       image_url: imageUrl,
     };
-    onSubmit(finalData);
+    
+    try {
+      await onSubmit(finalData);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   return (

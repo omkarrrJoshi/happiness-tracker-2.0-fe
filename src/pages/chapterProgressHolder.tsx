@@ -4,10 +4,9 @@ import { useFetchChaptersQuery } from "../redux/api/monthlyTaskApiSlice";
 import ChapterProgressContainer from "../components/common/chapterProgressContainer";
 
 const ChapterProgressHolder: React.FC = () => {
-  const { type, task_ref_id } = useParams();
+  const { type, task_ref_id, pillar } = useParams();
   const [searchParams] = useSearchParams();
   const progress_id = searchParams.get("progress_id");
-
   const { data: chaptersResponse, isLoading: isLoadingChapters } = useFetchChaptersQuery({
     task_ref_id: task_ref_id || "",
     task_progress_id: progress_id || "",
@@ -27,6 +26,7 @@ const ChapterProgressHolder: React.FC = () => {
         success={chaptersResponse?.success || false}
         taskRefId={task_ref_id || ""}
         taskProgressId={progress_id || ""}
+        pillar={pillar || ""}
       />
     </div>
   );

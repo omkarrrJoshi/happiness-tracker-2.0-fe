@@ -13,6 +13,7 @@ export interface ChapterProgressContainerProps {
   success: boolean;
   taskRefId: string;
   taskProgressId: string;
+  pillar: string;
 }
 
 const ChapterProgressContainer: React.FC<ChapterProgressContainerProps> = ({
@@ -23,19 +24,13 @@ const ChapterProgressContainer: React.FC<ChapterProgressContainerProps> = ({
   success,
   taskRefId,
   taskProgressId,
+  pillar
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [createChapter, { isLoading: isCreating }] = useCreateChapterMutation();
   const [updateChapterProgress, { isLoading: isUpdating }] = useUpdateChapterProgressMutation();
   const [updatingId, setUpdatingId] = useState<string | null>(null);
 
-  console.log("chapters", chapters);
-  console.log("statusCode", statusCode);
-  console.log("message", message);
-  console.log("isLoading", isLoading);
-  console.log("success", success);
-  console.log("taskRefId", taskRefId);
-  console.log("taskProgressId", taskProgressId);
   const formFields: FormField[] = [
     {
       name: "name",
@@ -83,15 +78,15 @@ const ChapterProgressContainer: React.FC<ChapterProgressContainerProps> = ({
   };
 
   return (
-    <div className="chapter-progress-container">
-      <div className="chapter-progress-header">
+    <div className={`chapter-progress-container ${pillar}-theme`}>
+      <div className={`chapter-progress-header`}>
         <h2>Chapters</h2>
         <button className="add-chapter-btn" onClick={() => setShowModal(true)}>
           + Add Chapter
         </button>
       </div>
       {chapters.length === 0 && (
-        <div className="chapter-progress-message">
+        <div className={`chapter-progress-message`}>
           {message}
         </div>
       )}

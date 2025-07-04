@@ -1,5 +1,5 @@
 .chapter-progress-container {
-  background: var(--background, #fff);
+  background: var(--secondary-bg-color);
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.07);
   padding: 24px;
@@ -10,31 +10,34 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: 8px 8px 0 0;
+  padding: 12px 16px;
+  background: var(--secondary-bg-color);
 }
 
 .add-chapter-btn {
-  background: var(--primary, #4f8cff);
-  color: #fff;
   border: none;
   border-radius: 6px;
   padding: 10px 22px;
   font-size: 1.1rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s;
+  font-weight: bold;
+  background: var(--primary-bg-color);
+  color: var(--primary-text-color);
 }
 .add-chapter-btn:hover {
-  background: var(--primary-dark, #3761b3);
+  background: var(--secondary-bg-color);
+  color: var(--secondary-text-color);
 }
 
 .chapter-progress-message {
   margin-top: 24px;
-  color: var(--danger, #d32f2f);
-  background: #fff0f0;
-  border: 1px solid var(--danger, #d32f2f);
   border-radius: 6px;
   padding: 16px;
   text-align: center;
   font-size: 1.1rem;
+  background: var(--secondary-bg-color);
 }
 
 .chapter-modal-backdrop {
@@ -47,20 +50,22 @@
   z-index: 1000;
 }
 .chapter-modal {
-  background: #fff;
   border-radius: 10px;
   padding: 32px 24px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.12);
   min-width: 320px;
   max-width: 95vw;
+  background: var(--secondary-bg-color);
 }
 .chapter-input {
   width: 100%;
   padding: 10px 14px;
   margin-bottom: 18px;
   border-radius: 6px;
-  border: 1px solid #ccc;
   font-size: 1.1rem;
+  border: 1px solid var(--big-border-color);
+  background: var(--secondary-bg-color);
+  color: var(--primary-text-color);
 }
 .chapter-modal-actions {
   display: flex;
@@ -68,17 +73,18 @@
   justify-content: flex-end;
 }
 .cancel-btn {
-  background: #eee;
-  color: #333;
   border: none;
   border-radius: 6px;
   padding: 10px 22px;
   font-size: 1.1rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s;
+  background: var(--secondary-bg-color);
+  color: var(--secondary-text-color);
 }
 .cancel-btn:hover {
-  background: #ddd;
+  background: var(--primary-bg-color);
+  color: var(--primary-text-color);
 }
 
 /* Iterations and chapters display */
@@ -89,8 +95,8 @@
   margin-bottom: 20px;
   padding: 16px;
   border-radius: 8px;
-  background: #f7faff;
-  border: 1px solid #e0e7ef;
+  background: var(--secondary-bg-color);
+  border: 1px solid var(--big-border-color);
 }
 .iteration-block.completed {
   background: #e6ffe6;
@@ -108,13 +114,14 @@
 }
 .chapter-checkbox {
   margin-right: 14px;
-  accent-color: var(--primary, #4f8cff);
   width: 22px;
   height: 22px;
+  accent-color: var(--primary-bg-color);
 }
 .chapter-name {
   font-size: 1.1rem;
   word-break: break-word;
+  color: var(--primary-text-color);
 }
 
 @media (max-width: 600px) {

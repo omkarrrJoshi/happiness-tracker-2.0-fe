@@ -83,7 +83,7 @@ const Mental: React.FC = () => {
       taskType: "daily"
     },
     {
-      label: "Book Reading",
+      label: "Holistic Reading",
       isLoading: booksLoading,
       tasks: booksData,
       pillar: MENTAL,

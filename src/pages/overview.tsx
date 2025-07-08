@@ -15,6 +15,12 @@ const pillars = [
     path: "mental",
     themeClass: "mental-theme"
   },
+  {
+    name: "Intellectual साधना",
+    description: "Enhance your intellectual capabilities and critical thinking.",
+    path: "intellectual",
+    themeClass: "intellectual-theme"
+  }
 ];
 
 const Overview: React.FC = () => {

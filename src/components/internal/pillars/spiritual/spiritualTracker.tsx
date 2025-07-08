@@ -134,7 +134,7 @@ const SpiritualTracker: React.FC<TrackerPageProps> = ({ pillar }) => {
         </div>
 
         <div className={`${DEFAULT_CLASS_NAME}-daily-task-selector`}>
-          <label>{selectedType}:</label>
+          <label key={selectedType}>{selectedType}:</label>
           <select value={selectedDailyTaskRefId} onChange={(e) => setSelectedDailyTaskRefId(e.target.value)}>
             <option value="all">All</option>
             {

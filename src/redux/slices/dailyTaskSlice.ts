@@ -11,6 +11,9 @@ const initialState: DailyTaskState = {
   activity: { data: [], loading: false, errors: null, message: null },
   book: { data: [], loading: false, errors: null, message: null },
   pranayama: { data: [], loading: false, errors: null, message: null },
+  insight_reading: { data: [], loading: false, errors: null, message: null },
+  brain_practices: { data: [], loading: false, errors: null, message: null },
+  life_mastery: { data: [], loading: false, errors: null, message: null },
 };
 
 const dailyTaskSlice = createSlice({

@@ -38,9 +38,8 @@ const DailyTaskDetails: React.FC<DailyTaskDetailsProps> = ({
 
   const DEFAULT_CLASS_NAME = "daily-task-details";
 
-  console.log("name:", name)
   return (
-    <div className={DEFAULT_CLASS_NAME}>
+    <div className={`${DEFAULT_CLASS_NAME} ${pillar}-theme`}>
       <h3 className={`${DEFAULT_CLASS_NAME}__title`}>{name}</h3>
 
       {/* ✅ Show Loader Until Image Loads */}

@@ -1,4 +1,4 @@
-import { ACTIVITY, NAMASMARAN, SHLOKA } from "../../constants/constants";
+import { ACTIVITY, INSIGHT_READING, BRAIN_PRACTICES, NAMASMARAN, SHLOKA, LIFE_MASTERY, BOOK, PRANAYAMA } from "../../constants/constants";
 import { DailyTask } from "../../types/models/dailyTask";
 import { AppState, DailyTaskState } from "../../types/stateTypes";
 
@@ -86,6 +86,52 @@ export const getBookError = (state: AppState): string | null => {
 export const getBookMessage = (state: AppState): string | null => {
   return getDailyTaskReducer(state).book.message;
 }
+
+export const getInsightReadingData = (state: AppState): DailyTask[] => {
+  return getDailyTaskReducer(state).insight_reading.data;
+}
+
+export const getInsightReadingLoading = (state: AppState): boolean => {
+  return getDailyTaskReducer(state).insight_reading.loading;
+}
+
+export const getInsightReadingError = (state: AppState): string | null => {
+  return getDailyTaskReducer(state).insight_reading.errors;
+}
+
+export const getInsightReadingMessage = (state: AppState): string | null => {
+  return getDailyTaskReducer(state).insight_reading.message;
+}
+
+export const getBrainPracticesData = (state: AppState): DailyTask[] => {
+  return getDailyTaskReducer(state).brain_practices.data;
+}
+
+export const getBrainPracticesLoading = (state: AppState): boolean => {
+  return getDailyTaskReducer(state).brain_practices.loading;
+}
+
+export const getBrainPracticesError = (state: AppState): string | null => {
+  return getDailyTaskReducer(state).brain_practices.errors;
+}
+
+export const getBrainPracticesMessage = (state: AppState): string | null => {
+  return getDailyTaskReducer(state).brain_practices.message;
+}
+
+export const getLifeMasteryData = (state: AppState): DailyTask[] => {
+  return getDailyTaskReducer(state).life_mastery.data;
+}
+
+export const getLifeMasteryLoading = (state: AppState): boolean => {
+  return getDailyTaskReducer(state).life_mastery.loading;
+}
+
+export const getLifeMasteryError = (state: AppState): string | null => {
+  return getDailyTaskReducer(state).life_mastery.errors;
+}
+
+
 export const getDailyTaskByRefId = (state: AppState, id: string | undefined, type: string | undefined): DailyTask | undefined => {
   if(type === SHLOKA){
     return getShlokaData(state).find(task => task.daily_task_ref_id === id);
@@ -95,6 +141,21 @@ export const getDailyTaskByRefId = (state: AppState, id: string | undefined, typ
   }
   else if(type === ACTIVITY){
     return getActivityData(state).find(task => task.daily_task_ref_id === id);
+  }
+  else if(type === BOOK){
+    return getBookData(state).find(task => task.daily_task_ref_id === id);
+  }
+  else if(type === PRANAYAMA){
+    return getPranayamaData(state).find(task => task.daily_task_ref_id === id);
+  }
+  else if(type === INSIGHT_READING){
+    return getInsightReadingData(state).find(task => task.daily_task_ref_id === id);
+  }
+  else if(type === BRAIN_PRACTICES){
+    return getBrainPracticesData(state).find(task => task.daily_task_ref_id === id);
+  }
+  else if(type === LIFE_MASTERY){
+    return getLifeMasteryData(state).find(task => task.daily_task_ref_id === id);
   }
   return undefined;
 }

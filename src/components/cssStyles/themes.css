@@ -38,3 +38,15 @@
   --container-background-color: #EDF4FA
 }
 
+/* Intellectual Pillar Theme */
+.intellectual-theme {
+  --primary-bg-color: #af42c2; /* Soft, light purple for primary elements */
+  --primary-text-color: #fff; /* White for strong readability */
+  --secondary-bg-color: #ede7f6; /* Soft lavender for backgrounds */
+  --secondary-text-color: #5e35b1; /* Muted purple for secondary text */
+  --deleted-content-bg-color: #ede7f6;
+  --deleted-content-text-color: #888888;
+  --big-border-color: #7c43bd; /* Medium purple for borders */
+  --container-background-color: #f3e5f5; /* Lightest lavender for container */
+}
+

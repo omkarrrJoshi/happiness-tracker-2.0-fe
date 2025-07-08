@@ -15,6 +15,9 @@ export interface DailyTaskState {
   activity: TaskState;
   pranayama: TaskState;
   book: TaskState
+  insight_reading: TaskState;
+  brain_practices: TaskState;
+  life_mastery: TaskState;
 }
 
 export interface DateState{

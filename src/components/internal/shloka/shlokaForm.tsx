@@ -60,8 +60,6 @@ const ShlokaForm: React.FC<ShlokaFormProps> = ({ isOpen, onClose, type, initialD
   const formFields = getFormFields();
 
   const handleSubmit = async (data: Record<string, any>) => {
-    console.log("data", data);
-    console.log("taskType", taskType);
     if (taskType === "daily") {
       // Daily task payload
       const payloadData = {

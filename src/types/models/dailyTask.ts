@@ -69,5 +69,6 @@ export interface FetchDailyTasTrackerRequest {
 
 export interface DailyTaskTracker {
   total_progress: number,
-  total_target: number
+  total_target: number,
+  total_progress_percentage: number
 }

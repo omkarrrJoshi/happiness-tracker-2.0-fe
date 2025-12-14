@@ -6,12 +6,14 @@ interface PieChartTrackerProps {
   colors: string[];
   title: string;
   data: { name: string; value: number }[];
+  show_percentage_label?: boolean;
 }
 
 const PieChartTracker: React.FC<PieChartTrackerProps> = ({
   colors,
   title,
   data,
+  show_percentage_label = false,
 }) => {
   const DEFAULT_CLASS_NAME = "pie-chart-tracker";
 
@@ -46,7 +48,13 @@ const PieChartTracker: React.FC<PieChartTrackerProps> = ({
               cx="50%"
               cy="50%"
               outerRadius={80}
-              label={({ value }) => value} // ✅ Show numbers inside chart
+              label={({ value }) => {
+                if (show_percentage_label) {
+                  const percentage = total > 0 ? ((value / total) * 100).toFixed(2) : 0;
+                  return `${percentage}%`;
+                }
+                return value;
+              }} // ✅ Show percentage or value based on prop
               labelLine={false}
             >
               {data.map((_, index) => (

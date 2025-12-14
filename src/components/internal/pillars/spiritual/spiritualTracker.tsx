@@ -157,7 +157,7 @@ const SpiritualTracker: React.FC<TrackerPageProps> = ({ pillar }) => {
         <input type="date" value={endDate} disabled={isDatePickerDisabled} onChange={(e) => setEndDate(e.target.value)} />
       </div>
 
-      <PieChartTracker colors={COLORS} data={progressData} title={selectedType} />
+      <PieChartTracker colors={COLORS} data={progressData} title={selectedType} show_percentage_label={true} />
     </div>
   );
 };

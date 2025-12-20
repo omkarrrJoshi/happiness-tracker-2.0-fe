@@ -6,9 +6,31 @@
   background-color: var(--container-background-color);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 100%;
-  overflow: hidden;
   text-align: center;
   margin: 2px;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative; /* For floating animation positioning */
+}
+
+/* Custom scrollbar styling */
+.daily-task-details::-webkit-scrollbar {
+  width: 8px;
+}
+
+.daily-task-details::-webkit-scrollbar-track {
+  background: var(--secondary-bg-color);
+  border-radius: 4px;
+}
+
+.daily-task-details::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.daily-task-details::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 /* 🔹 Empty State */
@@ -58,11 +80,107 @@
   opacity: 0;
 }
 
-/* 🔹 Progress */
-.daily-task-details__progress {
-  font-size: 14px;
-  color: #666;
+/* 🔹 Progress Container */
+.daily-task-details__progress-container {
+  background: var(--secondary-bg-color);
+  border: 2px solid var(--big-border-color);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 16px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.daily-task-details__progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 12px;
+}
+
+.daily-task-details__progress-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--secondary-text-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.daily-task-details__progress-percentage {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--secondary-text-color);
+}
+
+.daily-task-details__progress-numbers {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.daily-task-details__progress-current {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--primary-text-color);
+  line-height: 1;
+}
+
+.daily-task-details__progress-separator {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--secondary-text-color);
+  line-height: 1;
+}
+
+.daily-task-details__progress-target {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--secondary-text-color);
+  line-height: 1;
+}
+
+.daily-task-details__progress-bar-container {
+  width: 100%;
+  height: 12px;
+  background-color: var(--container-background-color);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.daily-task-details__progress-bar-fill {
+  height: 100%;
+  background: var(--primary-bg-color);
+  border-radius: 10px;
+  transition: width 0.5s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.daily-task-details__progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 /* 🔹 Description */
@@ -85,32 +203,6 @@
   max-height: none;
 }
 
-/* 🔹 Action Buttons */
-.daily-task-details__actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 12px;
-}
-
-.daily-task-details__edit-btn,
-.daily-task-details__delete-btn {
-  padding: 8px 14px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.daily-task-details__edit-btn {
-  background-color: #ffcc00;
-  color: #333;
-}
-
-.daily-task-details__delete-btn {
-  background-color: #ff6666;
-  color: #fff;
-}
-
 /* 🔹 Responsive Design */
 @media (max-width: 480px) {
   .daily-task-details {
@@ -121,13 +213,60 @@
     font-size: 16px;
   }
 
-  .daily-task-details__progress {
+  .daily-task-details__progress-container {
+    padding: 12px 16px;
+    margin: 12px 0;
+  }
+
+  .daily-task-details__progress-label {
     font-size: 12px;
   }
 
-  .daily-task-details__edit-btn,
-  .daily-task-details__delete-btn {
-    font-size: 12px;
-    padding: 6px 10px;
+  .daily-task-details__progress-percentage {
+    font-size: 16px;
+  }
+
+  .daily-task-details__progress-current {
+    font-size: 28px;
+  }
+
+  .daily-task-details__progress-separator {
+    font-size: 22px;
+  }
+
+  .daily-task-details__progress-target {
+    font-size: 22px;
+  }
+
+  .daily-task-details__progress-bar-container {
+    height: 10px;
+  }
+
+  .daily-task-details {
+    padding: 12px;
+  }
+}
+
+/* 🔹 Floating Name Animation */
+.daily-task-details__floating-name {
+  position: absolute;
+  pointer-events: none;
+  font-weight: bold;
+  color: var(--primary-text-color);
+  font-size: 18px;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  animation: floatUpAndGrow 1.5s ease-out forwards;
+}
+
+@keyframes floatUpAndGrow {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -300%) scale(1.8); /* Move up significantly and grow */
   }
 }

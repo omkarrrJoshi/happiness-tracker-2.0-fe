@@ -1,0 +1,65 @@
+.daily-task-details-holder {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.daily-task-details-holder__content-wrapper {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 0px 55px 0px; /* Space for fixed action buttons */
+}
+
+/* 🔹 Action Buttons */
+.daily-task-details__actions {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 600px;
+  padding: 12px 16px;
+  background-color: var(--container-background-color);
+  border-radius: 8px;
+  z-index: 100;
+}
+
+.daily-task-details__edit-btn,
+.daily-task-details__delete-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.daily-task-details__edit-btn {
+  background-color: #ffcc00;
+  color: #333;
+}
+
+.daily-task-details__delete-btn {
+  background-color: #ff6666;
+  color: #fff;
+}
+
+/* 🔹 Responsive Design */
+@media (max-width: 480px) {
+  .daily-task-details__edit-btn,
+  .daily-task-details__delete-btn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .daily-task-details__actions {
+    width: calc(100% - 20px);
+    bottom: 10px;
+    padding: 10px 12px;
+  }
+}
+

@@ -58,7 +58,7 @@ const Spiritual: React.FC = () => {
   const sections = [
     // daily task shloka
     {
-      label: "Shlokas",
+      label: "Nitya Upasana",
       isLoading: shlokasLoading,
       tasks: shlokasData,
       pillar: SPIRITUAL,

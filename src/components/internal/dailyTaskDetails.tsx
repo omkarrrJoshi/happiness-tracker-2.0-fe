@@ -44,9 +44,6 @@ const DailyTaskDetails: React.FC<DailyTaskDetailsProps> = ({
   const [floatingAnimations, setFloatingAnimations] = useState<Array<{ id: number; x: number; y: number }>>([]);
   const currentTaskProgress = useRef(daily_progress)
 
-  console.log("daily task progress: ", daily_progress)
-  console.log("current task progress: ", currentTaskProgress.current)
-  console.log("--------")
   const dispatch = useDispatch();
   const userId: string = useSelector(getUserId) as string;
 

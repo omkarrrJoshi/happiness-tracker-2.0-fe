@@ -19,3 +19,4 @@ export const BRAIN_PRACTICES = "brain_practices"
 export const LIFE_MASTERY = "life_mastery"
 
 export const MONTHLY_TASK_TYPES = [PARAYANAS, MONTHLY_ACTIVITY]
+export const LARGE_TARGET_TYPES = [NAMASMARAN]

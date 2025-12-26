@@ -21,6 +21,7 @@ import { CreateDailyTaskPayload, FetchDailyTasTrackerRequest, UpdateDailyTaskPro
 import { showNotification } from "../../utils/notification";
 import { fetchDailyTaskTrackerFailure, fetchDailyTaskTrackerRequest, fetchDailyTaskTrackerSuccess } from "../slices/dailyTaskTrackerSlice";
 import { DailyTaskType } from "../../constants/types";
+import { LARGE_TARGET_TYPES, NAMASMARAN } from "../../constants/constants";
 
 interface FetchDailyTaskPayload {
   user_id: string,
@@ -72,7 +73,9 @@ function* handleUpdateDailyTaskProgress(action: PayloadAction<UpdateDailyTaskPro
 
     const result: ApiResponse = yield call(updateDailyTaskProgress, user_id, action.payload);
     if (result.success) {
-      showNotification(result.message, "success")
+      if(!LARGE_TARGET_TYPES.includes(type)){
+        showNotification(result.message, "success")
+      }
       yield put(updateDailyTaskProgressSuccess({ type, data: result.data, message: result.message }));
     } else {
       showNotification(result.message, "error", 6000)

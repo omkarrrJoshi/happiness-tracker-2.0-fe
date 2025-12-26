@@ -84,7 +84,7 @@ const dailyTaskSlice = createSlice({
         task => task.daily_task_ref_id === daily_task_ref_id
       );
 
-      if(matchedTask && daily_progress >= daily_target && daily_progress > matchedTask?.daily_progress){
+      if(matchedTask && daily_progress === daily_target && daily_progress > matchedTask?.daily_progress){
         const imageUrl = matchedTask?.image_url;
 
         showImageNotification(

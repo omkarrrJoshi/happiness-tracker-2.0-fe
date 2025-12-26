@@ -4,19 +4,19 @@ import WebHeader from "../components/common/webHeader";
 
 const pillars = [
   {
-    name: "Spiritual pillar",
+    name: "Spiritual Pillar",
     description: "Connect with your inner self and spiritual growth.",
     path: "spiritual",
     themeClass: "spiritual-theme"
   },
   {
-    name: "Mental pillar",
+    name: "Mental Pillar",
     description: "Boost your mental clarity and cognitive skills.",
     path: "mental",
     themeClass: "mental-theme"
   },
   {
-    name: "Intellectual pillar",
+    name: "Intellectual Pillar",
     description: "Enhance your intellectual capabilities and critical thinking.",
     path: "intellectual",
     themeClass: "intellectual-theme"
